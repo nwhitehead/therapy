@@ -1,11 +1,51 @@
 <script setup lang="ts">
+
+import { ref, onMounted } from 'vue';
+
+let crtRef = ref(null);
+const speedup = 1;
+const glitchTMin = 5000 / speedup;
+const glitchTMax = 25000 / speedup;
+const rollTMin = 1000 / speedup;
+const rollTMax = 10000 / speedup;
+const glitchDuration = 300;
+const rollYMin = -2;
+const rollYMax = 2;
+const rollDurationMin = 100;
+const rollDurationMax = 300;
+
+function scheduleGlitch() {
+    const delay = Math.random() * (glitchTMax - glitchTMin) + glitchTMin;
+    setTimeout(() => {
+        crtRef.value.classList.add('glitch');
+        setTimeout(() => crtRef.value.classList.remove('glitch'), glitchDuration);
+        scheduleGlitch();
+    }, delay);
+}
+
+function scheduleRoll(){
+    setTimeout(() => {
+        const y = (Math.random() * (rollYMax - rollYMin) + rollYMin).toFixed(1);
+        crtRef.value.style.transform = `translateY(${y}px)`;
+        setTimeout(() => {
+            crtRef.value.style.transform = 'translateY(0)';
+        }, rollDurationMin + Math.random() * (rollDurationMax - rollDurationMin));
+        scheduleRoll();
+    }, rollTMin + Math.random() * (rollTMax - rollTMin));
+}
+
+onMounted(() => {
+    scheduleGlitch();
+    scheduleRoll();
+})
+
 </script>
 
 <template>
-    <div class="crt">
+    <div ref="crtRef" class="crt">
         <div class="wrapper">
             <code>
-                <span class="pink">import</span> <span class="lightblue">{ home }</span> from <span class="yellow">'./_site/home/'</span>;<span class="cursor">_</span>
+                <span class="pink flicker">import</span> <span class="lightblue">{ home }</span> from <span class="yellow">'./_site/home/'</span>;<span class="cursor">_</span>
             </code>
             <p>This is the game.</p>
         </div>
@@ -65,12 +105,9 @@
     }
 }
 @keyframes blinkTextCursor {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 .crt {
@@ -82,7 +119,6 @@
         content: "";
         transform: translateZ(0);
         pointer-events: none;
-        //opacity: 0.5;
         mix-blend-mode: overlay;
         position: absolute;
         height: 100%;
