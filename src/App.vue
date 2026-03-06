@@ -66,12 +66,19 @@ onMounted(() => {
 </template>
 
 <style scoped>
+:root {
+  --crt-red: rgb(10, 8, 8);
+  --crt-green: rgb(112, 159, 115);
+  --crt-blue: rgb(40, 129, 206);
+}
+
 .crt {
     width: 100%;
     height: 100%;
     padding: 0;
     margin: 0;
     font-family: monospace;
+    border-radius: 30px;
 }
 .pink {
     color: pink;
@@ -103,23 +110,21 @@ onMounted(() => {
 }
 .cursor {
     display: inline-block;
-    animation: blinkTextCursor 800ms infinite normal;
+    animation: blinkTextCursor 1200ms infinite normal;
 }
 
 /* Animation */
 .anim-typewriter {
 }
 @keyframes typewriter {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
+    from { width: 0; }
+    to { width: 100%; }
 }
 @keyframes blinkTextCursor {
     0% { opacity: 0; }
-    50% { opacity: 1; }
+    20% { opacity: 1; }
+    60% { opacity: 1; }
+    95% { opacity: 0; }
     100% { opacity: 0; }
 }
 
@@ -139,6 +144,7 @@ onMounted(() => {
         left: 0;
         top: 0;
         z-index: 1;
+        border-radius: 30px;
     }
 
     &:before {
@@ -149,5 +155,47 @@ onMounted(() => {
         );
     }
 }
+
+@keyframes glitch {
+    0% { transform: translate(0); opacity: 1; filter: none; }
+    20% { transform: translate(-2px, 2px) skew(1deg,1deg); filter: blur(1px); }
+    40% { transform: translate(2px,-2px) skew(-1deg,-1deg); filter: blur(1px); }
+    60% { transform: translate(-1px,1px) skew(0.5deg,0.5deg); opacity: 0.9; }
+    80% { transform: translate(1px,-1px) skew(-0.5deg,-0.5deg); opacity: 1; }
+    100% { transform: translate(0); opacity: 1; filter: none; }
+}
+
+.glitch {
+    animation: glitch 0.3s linear;
+}
+
+@keyframes flicker {
+  0% { opacity:   0.92470; }
+  5% { opacity:   0.92250; }
+  10% { opacity:  0.95397; }
+  15% { opacity:  0.99918; }
+  20% { opacity:  0.95121; }
+  25% { opacity:  0.99582; }
+  30% { opacity:  0.95925; }
+  35% { opacity:  0.96666; }
+  40% { opacity:  0.90380; }
+  45% { opacity:  0.99641; }
+  50% { opacity:  0.99994; }
+  55% { opacity:  0.93594; }
+  60% { opacity:  0.99382; }
+  65% { opacity:  0.97803; }
+  70% { opacity:  0.89917; }
+  75% { opacity:  0.95337; }
+  80% { opacity:  0.97669; }
+  85% { opacity:  0.97411; }
+  90% { opacity:  0.97307; }
+  95% { opacity:  0.93920; }
+  100% { opacity: 0.96779; }
+}
+
+.flicker .wrapper {
+    animation: flicker 4.0s infinite;
+}
+
 
 </style>
