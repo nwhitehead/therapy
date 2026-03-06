@@ -8,7 +8,10 @@ const glitchTMin = 5000 / speedup;
 const glitchTMax = 25000 / speedup;
 const rollTMin = 1000 / speedup;
 const rollTMax = 10000 / speedup;
+const flickerTMin = 1000 / speedup;
+const flickerTMax = 5000 / speedup;
 const glitchDuration = 300;
+const flickerDuration = 1000;
 const rollYMin = -2;
 const rollYMax = 2;
 const rollDurationMin = 100;
@@ -34,9 +37,19 @@ function scheduleRoll(){
     }, rollTMin + Math.random() * (rollTMax - rollTMin));
 }
 
+function scheduleFlicker() {
+    const delay = Math.random() * (flickerTMax - flickerTMin) + flickerTMin;
+    setTimeout(() => {
+        crtRef.value.classList.add('flicker');
+        setTimeout(() => crtRef.value.classList.remove('flicker'), flickerDuration);
+        scheduleFlicker();
+    }, delay);
+}
+
 onMounted(() => {
     scheduleGlitch();
     scheduleRoll();
+    scheduleFlicker();
 })
 
 </script>
@@ -45,7 +58,7 @@ onMounted(() => {
     <div ref="crtRef" class="crt">
         <div class="wrapper">
             <code>
-                <span class="pink flicker">import</span> <span class="lightblue">{ home }</span> from <span class="yellow">'./_site/home/'</span>;<span class="cursor">_</span>
+                <span class="pink">import</span> <span class="lightblue">{ home }</span> from <span class="yellow">'./_site/home/'</span>;<span class="cursor">_</span>
             </code>
             <p>This is the game.</p>
         </div>

@@ -90,12 +90,13 @@ main {
   margin: 0;
   background-color: #000;
   color: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
 }
 
 @keyframes glitch {
     0% { transform: translate(0); opacity: 1; filter: none; }
-    20% { transform: translate(-2px, 2px) skew(1deg,1deg); filter: contrast(0.8) brightness(1.5) hue-rotate(10deg) blur(1px); }
-    40% { transform: translate(2px,-2px) skew(-1deg,-1deg); filter: contrast(1.2) brightness(0.8) hue-rotate(-10deg) blur(1px); }
+    20% { transform: translate(-2px, 2px) skew(1deg,1deg); filter: blur(1px); }
+    40% { transform: translate(2px,-2px) skew(-1deg,-1deg); filter: blur(1px); }
     60% { transform: translate(-1px,1px) skew(0.5deg,0.5deg); opacity: 0.9; }
     80% { transform: translate(1px,-1px) skew(-0.5deg,-0.5deg); opacity: 1; }
     100% { transform: translate(0); opacity: 1; filter: none; }
@@ -106,29 +107,29 @@ main {
 }
 
 @keyframes flicker {
-  0% { opacity:   0.27861; }
-  5% { opacity:   0.34769; }
-  10% { opacity:  0.23604; }
-  15% { opacity:  0.90626; }
-  20% { opacity:  0.18128; }
-  25% { opacity:  0.83891; }
-  30% { opacity:  0.65583; }
-  35% { opacity:  0.67807; }
-  40% { opacity:  0.26559; }
-  45% { opacity:  0.84693; }
-  50% { opacity:  0.96019; }
-  55% { opacity:  0.08594; }
-  60% { opacity:  0.20313; }
-  65% { opacity:  0.71988; }
-  70% { opacity:  0.53455; }
-  75% { opacity:  0.37288; }
-  80% { opacity:  0.71428; }
-  85% { opacity:  0.70419; }
-  90% { opacity:  0.70030; }
-  95% { opacity:  0.36108; }
-  100% { opacity: 0.24387; }
+  0% { opacity:   0.92470; }
+  5% { opacity:   0.92250; }
+  10% { opacity:  0.95397; }
+  15% { opacity:  0.99918; }
+  20% { opacity:  0.95121; }
+  25% { opacity:  0.99582; }
+  30% { opacity:  0.95925; }
+  35% { opacity:  0.96666; }
+  40% { opacity:  0.90380; }
+  45% { opacity:  0.99641; }
+  50% { opacity:  0.99994; }
+  55% { opacity:  0.93594; }
+  60% { opacity:  0.99382; }
+  65% { opacity:  0.97803; }
+  70% { opacity:  0.89917; }
+  75% { opacity:  0.95337; }
+  80% { opacity:  0.97669; }
+  85% { opacity:  0.97411; }
+  90% { opacity:  0.97307; }
+  95% { opacity:  0.93920; }
+  100% { opacity: 0.96779; }
 }
 
-.flicker {
-    animation: flicker 0.15s infinite;
+.flicker .wrapper {
+    animation: flicker 4.0s infinite;
 }
