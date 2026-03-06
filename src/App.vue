@@ -58,7 +58,7 @@ onMounted(() => {
     <div ref="crtRef" class="crt">
         <div class="wrapper">
             <code>
-                <span class="pink">import</span> <span class="lightblue">{ home }</span> from <span class="yellow">'./_site/home/'</span>;<span class="cursor">_</span>
+                <span class="pink">import</span> <span class="lightblue">{ home }</span> from <span class="yellow">'./~site/home/'</span>;<span class="cursor">&block;</span>
             </code>
             <p>This is the game.</p>
         </div>
@@ -66,11 +66,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-:root {
-  --crt-red: rgb(10, 8, 8);
-  --crt-green: rgb(112, 159, 115);
-  --crt-blue: rgb(40, 129, 206);
-}
 
 .crt {
     width: 100%;
@@ -149,9 +144,9 @@ onMounted(() => {
 
     &:before {
         background: repeating-linear-gradient(
-            var(--crt-red) 0px,
-            var(--crt-green) 2px,
-            var(--crt-blue) 4px
+            rgb(100, 8, 8) 0px,
+            rgb(112, 159, 115) 2px,
+            rgb(40, 129, 206) 4px
         );
     }
 }
