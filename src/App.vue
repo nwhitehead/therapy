@@ -10,7 +10,7 @@ const rollTMin = 1000 / speedup;
 const rollTMax = 10000 / speedup;
 const flickerTMin = 1000 / speedup;
 const flickerTMax = 5000 / speedup;
-const glitchDuration = 300;
+const glitchDuration = 350;
 const flickerDuration = 1000;
 const rollYMin = -2;
 const rollYMax = 2;
@@ -58,7 +58,7 @@ onMounted(() => {
     <div ref="crtRef" class="crt">
         <div class="wrapper">
             <code>
-                <span class="pink">import</span> <span class="lightblue">{ home }</span> from <span class="yellow">'./~site/home/'</span>;<span class="cursor">&block;</span>
+                <span class="pink">import</span> <span class="lightblue">{ types }</span> from <span class="yellow">'modelspace/virtual'</span>;<span class="cursor">&block;</span>
             </code>
             <p>This is the game.</p>
         </div>
@@ -144,7 +144,7 @@ onMounted(() => {
 
     &:before {
         background: repeating-linear-gradient(
-            rgb(100, 8, 8) 0px,
+            rgb(218, 49, 49) 0px,
             rgb(112, 159, 115) 2px,
             rgb(40, 129, 206) 4px
         );
@@ -161,7 +161,7 @@ onMounted(() => {
 }
 
 .glitch {
-    animation: glitch 0.3s linear;
+    animation: glitch 0.35s linear;
 }
 
 @keyframes flicker {
