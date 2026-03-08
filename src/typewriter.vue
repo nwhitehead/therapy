@@ -11,7 +11,10 @@ onMounted(async () => {
     terminal = new Terminal({
         element: container.value,
     });
-    terminal.write("X\nThis is text in the typewriter.\b\b\b\b");
+    terminal.write("X\nThis is text in the ");
+    terminal.writeAttrib("typewritr", { fg: '#ff0' });
+    terminal.write(". More text.");
+    terminal.write("\b\b\b\b\b\b\b\b\b\b\b\b");
 })
 
 </script>

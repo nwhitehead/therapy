@@ -158,4 +158,13 @@ export class Terminal {
             this.writeChar(ch);
         }
     }
+    /// write string with temp attributes overloading current ones, pop at end
+    writeAttrib(data: string, attr: Attributes) {
+        const oldAttr = this.attr;
+        this.attr = { ...this.attr, ...attr };
+        for (const ch of data) {
+            this.writeChar(ch);
+        }
+        this.attr = oldAttr;
+    }
 }
