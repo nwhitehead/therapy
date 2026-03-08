@@ -34,6 +34,8 @@ export class Terminal {
     cursor: [number, number];
     /// current attribute for new writes (overwrites old)
     attr: Attributes;
+    /// requested attr stack
+    attrs: Attributes[];
     /// DOM element representing cursor
     cursorElem: HTMLElement;
     /// DOM element containing terminal
@@ -49,6 +51,7 @@ export class Terminal {
         this.cols = opts.cols ?? 80;
         this.cursor = [0, 0];
         this.attr = {};
+        this.attrs = [];
         const elem = opts.element ?? document.body;
         const div = document.createElement('div');
         elem.appendChild(div);
@@ -166,5 +169,19 @@ export class Terminal {
             this.writeChar(ch);
         }
         this.attr = oldAttr;
+    }
+    /// push new extra attrs
+    pushAttr(attr: Attributes) {
+        // keep copy of existing
+        const cur = { ...this.attr };
+        this.attrs.push(cur);
+        // overwrite stuff
+        this.attr = { ...this.attr, ...attr };
+    }
+    /// pop back attr
+    popAttr() {
+        const old = this.attrs.pop();
+        if (old === undefined) throw new Error("No attribute to pop");
+        this.attr = old;
     }
 }
