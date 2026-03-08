@@ -15,6 +15,7 @@ type Attributes = {
 
 /// Update a span DOM element representing one character cell of framebuffer
 function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
+    c.style = '';
     if (attr) {
         if (attr.fg !== undefined) c.style.color = attr.fg;
         if (attr.bg !== undefined) c.style.backgroundColor = attr.bg;
@@ -25,20 +26,29 @@ function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
 }
 
 export class Terminal {
+    /// size of terminal, rows
     rows: number;
+    /// size of terminal, cols
     cols: number;
+    /// where cursor is currently, [row, col]
     cursor: [number, number];
+    /// current attribute for new writes (overwrites old)
+    attr: Attributes;
+    /// DOM element representing cursor
     cursorElem: HTMLElement;
+    /// DOM element containing terminal
     containerElem: HTMLElement;
+    /// prefix for CSS classes to add to elements
     classPrefix: string;
+    /// 2D array of actual cells in terminal framebuffer
     framebuffer: HTMLElement[][];
-    //data: (string, )
     constructor (opts: Options) {
         this.classPrefix = opts.classPrefix ?? '';
         const prefix = this.classPrefix;
         this.rows = opts.rows ?? 24;
         this.cols = opts.cols ?? 80;
         this.cursor = [0, 0];
+        this.attr = {};
         const elem = opts.element ?? document.body;
         const div = document.createElement('div');
         elem.appendChild(div);
@@ -46,15 +56,15 @@ export class Terminal {
         this.containerElem.classList.add(`${prefix}terminal`);
         const cursor = document.createElement('span');
         cursor.classList.add(`${prefix}cursor`);
-        cursor.style.position = 'absolute';
         cursor.textContent = "█";
         this.cursorElem = cursor;
         this.framebuffer = [];
         this.recreateFramebuffer();
         this.updateCursorElem();
     }
+    /// create 2D framebuffer of 
+    // need to do this on init and if size changes
     recreateFramebuffer() {
-        // Create framebuffer
         const prefix = this.classPrefix;
         this.framebuffer = [];
         this.containerElem.textContent = '';
@@ -72,22 +82,41 @@ export class Terminal {
             this.containerElem.appendChild(rowElem);
         }
     }
+    /// get single cell at specified position or throw error
     getCell(r: number, c: number): HTMLElement {
         const row = this.framebuffer[r];
-        if (!row) throw new Error("Row out of range");
+        if (!row) throw new Error("r out of range");
         const cell = row[c];
-        if (!cell) throw new Error("Col out of range");
+        if (!cell) throw new Error("c out of range");
         return cell;
     }
-    /// Move cursor element to right parent in DOM
+    /// Move cursor element to correct parent in DOM
     updateCursorElem() {
         let [r, c] = this.cursor;
         const cell = this.getCell(r, c);
-        cell.appendChild(this.cursorElem);
+        cell.prepend(this.cursorElem);
     }
-    updateFramebuffer() {
-        //this.containerElem.appendChild(createCell('X', { bold: true, fg: '#f00' }));
-        // this.containerElem.appendChild(this.cursorElem);
+    /// update contents of single cell (removes attributes if none given)
+    updateCell(r: number, c: number, txt: string, attr?: Attributes) {
+        const cell = this.getCell(r, c);
+        updateCell(cell, txt, attr);
+    }
+    /// write one character with current attributes at cursor position
+    writeChar(txt: string) {
+        let [r, c] = this.cursor;
+        this.updateCell(r, c, txt, this.attr);
+        // move cursor
+        c += 1;
+        if (c === this.cols) {
+            c = 0;
+            r += 1;
+            if (r === this.rows) {
+                r -= 1;
+                // scroll?
+            }
+        }
+        this.cursor = [r, c];
+        this.updateCursorElem();
     }
     write(data: string) {
         //this.recreateFramebuffer();
