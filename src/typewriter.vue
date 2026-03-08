@@ -11,6 +11,7 @@ onMounted(async () => {
     terminal = new Terminal({
         element: container.value,
     });
+    terminal.moveCursor(20, 0);
     terminal.write("X\nThis is ");
     terminal.pushAttr({ bold: true });
     terminal.write("text");
@@ -22,7 +23,7 @@ onMounted(async () => {
     await terminal.writeMixedAsync([
         "What do we ", [ 'push', { bold: true }], "do", [ 'pop' ], " about you? ",
     ]);
-    terminal.writeAsync("All work and no play makes Jack a dull boy. ".repeat(100));
+    terminal.writeAsync("All work and no play makes Jack a dull boy. ".repeat(10));
 })
 
 </script>

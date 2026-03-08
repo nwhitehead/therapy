@@ -28,7 +28,7 @@ function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
 }
 
 /// Update a span DOM element representing one character cell of framebuffer
-function getCell(c: HTMLElement): [string, Attributes] {
+function getCellData(c: HTMLElement): [string, Attributes] {
     const txt = c.textContent;
     let attr: Attributes = {};
     if (c.style.color !== '') attr.fg = c.style.color;
@@ -104,6 +104,11 @@ export class Terminal {
             this.containerElem.appendChild(rowElem);
         }
     }
+    /// move cursor to specified position
+    moveCursor(r: number, c: number) {
+        this.cursor = [r, c];
+        this.updateCursorElem();
+    }
     /// get single cell at specified position or throw error
     getCell(r: number, c: number): HTMLElement {
         const row = this.framebuffer[r];
@@ -123,6 +128,19 @@ export class Terminal {
         const cell = this.getCell(r, c);
         updateCell(cell, txt, attr);
     }
+    /// scroll screen up one line, making bottom line blank (do not move cursor)
+    // blank line has current attr but no contents
+    scrollUp() {
+        for (let row = 0; row < this.rows - 1; row++) {
+            for (let col = 0; col < this.cols; col++) {
+                let [txt, attr] = getCellData(this.getCell(row + 1, col));
+                this.updateCell(row, col, txt, attr);
+            }
+        }
+        for (let col = 0; col < this.cols; col++) {
+            this.updateCell(this.rows - 1, col, " ", this.attr);
+        }
+    }
     /// advance cursor position
     cursorNext() {
         let [r, c] = this.cursor;
@@ -132,7 +150,7 @@ export class Terminal {
             r += 1;
             if (r === this.rows) {
                 r -= 1;
-                // scroll?
+                this.scrollUp();
             }
         }
         this.cursor = [r, c];
