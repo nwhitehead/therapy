@@ -46,10 +46,12 @@ export class Terminal {
         this.containerElem.classList.add(`${prefix}terminal`);
         const cursor = document.createElement('span');
         cursor.classList.add(`${prefix}cursor`);
+        cursor.style.position = 'absolute';
         cursor.textContent = "█";
         this.cursorElem = cursor;
         this.framebuffer = [];
         this.recreateFramebuffer();
+        this.updateCursorElem();
     }
     recreateFramebuffer() {
         // Create framebuffer
@@ -69,6 +71,19 @@ export class Terminal {
             this.framebuffer.push(rowCells);
             this.containerElem.appendChild(rowElem);
         }
+    }
+    getCell(r: number, c: number): HTMLElement {
+        const row = this.framebuffer[r];
+        if (!row) throw new Error("Row out of range");
+        const cell = row[c];
+        if (!cell) throw new Error("Col out of range");
+        return cell;
+    }
+    /// Move cursor element to right parent in DOM
+    updateCursorElem() {
+        let [r, c] = this.cursor;
+        const cell = this.getCell(r, c);
+        cell.appendChild(this.cursorElem);
     }
     updateFramebuffer() {
         //this.containerElem.appendChild(createCell('X', { bold: true, fg: '#f00' }));
