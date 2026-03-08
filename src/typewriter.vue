@@ -1,32 +1,23 @@
 <script setup lang="ts">
 
 import { useTemplateRef, onMounted } from 'vue';
-import { init, Terminal } from 'ghostty-web';
+import { Terminal } from './terminal.ts';
 
 let container = useTemplateRef('container');
 let terminal = null;
 
 onMounted(async () => {
-    await init();
+    if (container.value === null) throw new Error("Typewriter container is null");
     terminal = new Terminal({
-        allowTransparency: true,
-        cursorBlink: true,
-        cursorStyle: 'bar',
-        fontSize: 25,
-        fontFamily: 'monospace',
-        theme: {
-            background: 'rgba(0, 0, 0, 1.0)',
-            foreground: '#a9b1d6',
-        },
+        element: container.value,
     });
-    terminal.open(container.value);
-    terminal.write("This is some text.");
+    terminal.write("This is text in the typewriter.");
 })
 
 </script>
 
 <template>
-    <p>This is some text.</p>
+    <p>This is some top text.</p>
     <div ref="container">
     </div>
 </template>
