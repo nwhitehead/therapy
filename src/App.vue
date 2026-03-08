@@ -51,8 +51,8 @@ function scheduleFlicker() {
 }
 
 onMounted(() => {
-    scheduleGlitch();
-    scheduleRoll();
+    // scheduleGlitch();
+    // scheduleRoll();
     scheduleFlicker();
 })
 
@@ -104,50 +104,9 @@ function play() {
     border-radius: 30px;
     user-select: none;
 }
-.pink {
-    color: pink;
-}
-.yellow {
-    color: yellow;
-}
-.lightblue {
-    color: lightblue;
-}
-.code {
-    color: attr(data-color);
-    display: inline-block;
-    white-space: nowrap;
-}
 .wrapper {
     max-width: 1280px;
     text-align: left;
-}
-.code {
-    animation: typewriter 1s steps(14) 1s 1 normal both;
-    line-height: 1;
-    margin: 0;
-    display: inline-block;
-    white-space: nowrap;
-    overflow-x: hidden;
-}
-.cursor {
-    display: inline-block;
-    animation: blinkTextCursor 1200ms infinite normal;
-}
-
-/* Animation */
-.anim-typewriter {
-}
-@keyframes typewriter {
-    from { width: 0; }
-    to { width: 100%; }
-}
-@keyframes blinkTextCursor {
-    0% { opacity: 0; }
-    20% { opacity: 1; }
-    60% { opacity: 1; }
-    95% { opacity: 0; }
-    100% { opacity: 0; }
 }
 
 .crt {
