@@ -87,12 +87,7 @@ function play() {
     <audio ref="bgMusic" src="/home.opus" loop></audio>
     <div ref="crtRef" class="crt" @click="play">
         <div class="wrapper">
-            <code>
-                <span class="pink">import</span> <span class="lightblue">{ types }</span> from <span class="yellow">'modelspace/virtual'</span>;<span class="cursor">&block;</span>
-            </code>
-            <p>This is the game.</p>
-            <Typewriter :data="blah">
-                <p>This should appear as typewriter text.</p>
+            <Typewriter>
             </Typewriter>
         </div>
     </div>
