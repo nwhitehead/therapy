@@ -101,11 +101,9 @@ export class Terminal {
         const cell = this.getCell(r, c);
         updateCell(cell, txt, attr);
     }
-    /// write one character with current attributes at cursor position
-    writeChar(txt: string) {
+    /// advance cursor position
+    cursorNext() {
         let [r, c] = this.cursor;
-        this.updateCell(r, c, txt, this.attr);
-        // move cursor
         c += 1;
         if (c === this.cols) {
             c = 0;
@@ -118,7 +116,46 @@ export class Terminal {
         this.cursor = [r, c];
         this.updateCursorElem();
     }
+    /// prev cursor position
+    cursorPrev() {
+        let [r, c] = this.cursor;
+        c -= 1;
+        if (c === -1) {
+            c = 0;
+        }
+        this.cursor = [r, c];
+        this.updateCursorElem();
+    }
+    /// cursor go to next line
+    cursorEnter() {
+        let [r, c] = this.cursor;
+        c = 0;
+        r += 1;
+        if (r === this.rows) {
+            r -= 1;
+            // scroll?
+        }
+        this.cursor = [r, c];
+        this.updateCursorElem();
+    }
+    /// write one character with current attributes at cursor position
+    writeChar(txt: string) {
+        let [r, c] = this.cursor;
+        if (txt === '\n') {
+            this.cursorEnter();
+            return;
+        }
+        if (txt === '\b') {
+            this.cursorPrev();
+            return;
+        }
+        this.updateCell(r, c, txt, this.attr);
+        this.cursorNext();
+    }
+    /// write string with current attributes
     write(data: string) {
-        //this.recreateFramebuffer();
+        for (const ch of data) {
+            this.writeChar(ch);
+        }
     }
 }

@@ -11,8 +11,7 @@ onMounted(async () => {
     terminal = new Terminal({
         element: container.value,
     });
-    terminal.writeChar("X");
-    terminal.write("This is text in the typewriter.");
+    terminal.write("X\nThis is text in the typewriter.\b\b\b\b");
 })
 
 </script>
@@ -41,7 +40,9 @@ onMounted(async () => {
 }
 .cursor {
     animation: blinkTextCursor 1200ms infinite normal;
-    display: block;
+    display: inline-block;
     width: 0;
+    left: 0;
+    top: 0;
 }
 </style>
