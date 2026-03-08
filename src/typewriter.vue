@@ -17,10 +17,28 @@ onMounted(async () => {
 </script>
 
 <template>
-    <p>This is some top text.</p>
     <div ref="container">
     </div>
 </template>
 
-<style scoped>
+<style>
+.terminal {
+    line-height: 1.5em;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    white-space: pre;
+}
+.terminal .row {
+}
+@keyframes blinkTextCursor {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    60% { opacity: 1; }
+    95% { opacity: 0; }
+    100% { opacity: 0; }
+}
+.cursor {
+    animation: blinkTextCursor 1200ms infinite normal;
+}
 </style>

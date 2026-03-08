@@ -119,8 +119,6 @@ function play() {
     white-space: nowrap;
 }
 .wrapper {
-    padding-top: 6rem;
-    padding-left: 4rem;
     max-width: 1280px;
     text-align: left;
 }
