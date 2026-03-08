@@ -1,12 +1,14 @@
 <script setup lang="ts">
 
-import { ref, onMounted } from 'vue';
+import { useTemplateRef, onMounted } from 'vue';
 import Typewriter from './typewriter.vue';
 
 // crt help from: https://codepen.io/thisanimus/pen/OJpaqWz
 
-let bgMusic = ref(null);
-let crtRef = ref(null);
+let bgMusic = useTemplateRef('bgMusic');
+let crtRef = useTemplateRef('crt');
+let keystroke = useTemplateRef('keystroke');
+
 const speedup = 1;
 const glitchTMin = 5000 / speedup;
 const glitchTMax = 25000 / speedup;
@@ -81,13 +83,24 @@ function play() {
         bgMusic.value.play();
     }
 }
+
+function onEvent(evt) {
+    //console.log(`evt = ${JSON.stringify(evt)}`);
+    if (evt.type === 'write' && evt.data !== ' ') {
+        const snd = new Audio('/keystroke.opus');
+        snd.volume = 0.5;
+        snd.play();
+    }
+}
+
 </script>
 
 <template>
-    <audio id="bgaudio" ref="bgMusic" src="/home_loop.opus" loop></audio>
-    <div ref="crtRef" class="crt" @click="play">
+    <audio ref="bgMusic" src="/home_loop.opus" loop></audio>
+    <audio ref="keystroke" src="/keystroke.opus"></audio>
+    <div ref="crt" class="crt" @click="play">
         <div class="wrapper">
-            <Typewriter>
+            <Typewriter @event="onEvent">
             </Typewriter>
         </div>
     </div>

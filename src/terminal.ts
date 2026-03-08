@@ -4,6 +4,7 @@ type Options = {
     cols?: number;
     element?: HTMLElement;
     classPrefix?: string;
+    eventCallback?: any;
 }
 
 type Attributes = {
@@ -62,15 +63,18 @@ export class Terminal {
     framebuffer: HTMLElement[][];
     /// amount of time to delay between actions
     delay: number;
+    /// callback to call when things happen
+    callback: any;
     constructor (opts: Options) {
         this.classPrefix = opts.classPrefix ?? '';
         const prefix = this.classPrefix;
         this.rows = opts.rows ?? 25;
         this.cols = opts.cols ?? 80;
-        this.delay = 10;
+        this.delay = 20;
         this.cursor = [0, 0];
         this.attr = {};
         this.attrs = [];
+        this.callback = opts.eventCallback ?? null;
         const elem = opts.element ?? document.body;
         const div = document.createElement('div');
         elem.appendChild(div);
@@ -243,6 +247,9 @@ export class Terminal {
         for (const ch of data) {
             this.writeChar(ch);
             await delay(this.delay);
+            if (this.callback) {
+                this.callback({ type: 'write', data: ch});
+            }
         }
     }
     /// write mixed text that incorporates attribute push/pop

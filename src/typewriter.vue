@@ -3,6 +3,8 @@
 import { useTemplateRef, onMounted } from 'vue';
 import { Terminal } from './terminal.ts';
 
+const emit = defineEmits(['event']);
+
 let container = useTemplateRef('container');
 let terminal = null;
 
@@ -10,6 +12,9 @@ onMounted(async () => {
     if (container.value === null) throw new Error("Typewriter container is null");
     terminal = new Terminal({
         element: container.value,
+        eventCallback: (evt) => {
+            emit('event', evt);
+        }
     });
     terminal.moveCursor(20, 0);
     terminal.write("X\nThis is ");
