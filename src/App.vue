@@ -84,7 +84,7 @@ function play() {
 </script>
 
 <template>
-    <audio ref="bgMusic" src="/home.opus" loop></audio>
+    <audio id="bgaudio" ref="bgMusic" src="/home_loop.opus" loop></audio>
     <div ref="crtRef" class="crt" @click="play">
         <div class="wrapper">
             <Typewriter>
