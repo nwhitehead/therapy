@@ -16,9 +16,13 @@ onMounted(async () => {
     terminal.write("text");
     terminal.popAttr();
     terminal.write(" in the ");
-    terminal.writeAttrib("typewritr", { fg: '#ff0' });
+    terminal.writeAttrib("typewriter", { fg: '#ff0' });
     terminal.write(". More text.");
-    terminal.write("\b\b\b\b\b\b\b\b\b\b\b\b");
+    terminal.write("\b\b\b\b\b\b\b\b\b\b\b\b\n");
+    await terminal.writeMixedAsync([
+        "What do we ", [ 'push', { bold: true }], "do", [ 'pop' ], " about you? ",
+    ]);
+    terminal.writeAsync("All work and no play makes Jack a dull boy. ".repeat(100));
 })
 
 </script>
@@ -39,10 +43,9 @@ onMounted(async () => {
 .terminal .row {
 }
 @keyframes blinkTextCursor {
-    0% { opacity: 0; }
-    20% { opacity: 1; }
-    60% { opacity: 1; }
-    95% { opacity: 0; }
+    0% { opacity: 1; }
+    40% { opacity: 1; }
+    75% { opacity: 0; }
     100% { opacity: 0; }
 }
 .cursor {

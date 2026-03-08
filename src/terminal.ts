@@ -13,6 +13,8 @@ type Attributes = {
     underline?: boolean;
 }
 
+type MixedText = (string | [ "push", Attributes ] | [ "pop" ])[];
+
 /// Update a span DOM element representing one character cell of framebuffer
 function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
     c.style = '';
@@ -24,6 +26,20 @@ function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
     }
     c.textContent = txt;
 }
+
+/// Update a span DOM element representing one character cell of framebuffer
+function getCell(c: HTMLElement): [string, Attributes] {
+    const txt = c.textContent;
+    let attr: Attributes = {};
+    if (c.style.color !== '') attr.fg = c.style.color;
+    if (c.style.backgroundColor !== '') attr.bg = c.style.backgroundColor;
+    if (c.style.fontWeight === 'bold') attr.bold = true;
+    if (c.style.textDecoration === 'underline') attr.underline = true;
+    return [txt, attr];
+}
+
+// delay for specified number of milliseconds
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 export class Terminal {
     /// size of terminal, rows
@@ -44,11 +60,14 @@ export class Terminal {
     classPrefix: string;
     /// 2D array of actual cells in terminal framebuffer
     framebuffer: HTMLElement[][];
+    /// amount of time to delay between actions
+    delay: number;
     constructor (opts: Options) {
         this.classPrefix = opts.classPrefix ?? '';
         const prefix = this.classPrefix;
-        this.rows = opts.rows ?? 24;
+        this.rows = opts.rows ?? 25;
         this.cols = opts.cols ?? 80;
+        this.delay = 10;
         this.cursor = [0, 0];
         this.attr = {};
         this.attrs = [];
@@ -183,5 +202,48 @@ export class Terminal {
         const old = this.attrs.pop();
         if (old === undefined) throw new Error("No attribute to pop");
         this.attr = old;
+    }
+    /// write mixed text that incorporates attribute push/pop
+    writeMixed(msg: MixedText) {
+        for (const item of msg) {
+            if (typeof item === 'string') {
+                this.write(item);
+            } else if (Array.isArray(item)) {
+                if (item[0] === 'push') {
+                    this.pushAttr(item[1]);
+                } else if (item[0] === 'pop') {
+                    this.popAttr();
+                } else {
+                    throw new Error("Unknown array item");
+                }
+            } else {
+                throw new Error("Unknown item type");
+            }
+        }
+    }
+    async writeAsync(data:string) {
+        for (const ch of data) {
+            this.writeChar(ch);
+            await delay(this.delay);
+        }
+    }
+    /// write mixed text that incorporates attribute push/pop
+    async writeMixedAsync(msg: MixedText) {
+        for (const item of msg) {
+            if (typeof item === 'string') {
+                await this.writeAsync(item);
+            } else if (Array.isArray(item)) {
+                if (item[0] === 'push') {
+                    this.pushAttr(item[1]);
+                } else if (item[0] === 'pop') {
+                    this.popAttr();
+                } else {
+                    throw new Error("Unknown array item");
+                }
+            } else {
+                throw new Error("Unknown item type");
+            }
+            await delay(this.delay);
+        }
     }
 }
