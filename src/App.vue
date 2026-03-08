@@ -2,6 +2,9 @@
 
 import { ref, onMounted } from 'vue';
 
+// crt help from: https://codepen.io/thisanimus/pen/OJpaqWz
+
+let bgMusic = ref(null);
 let crtRef = ref(null);
 const speedup = 1;
 const glitchTMin = 5000 / speedup;
@@ -52,10 +55,36 @@ onMounted(() => {
     scheduleFlicker();
 })
 
+// Ideas for bg music:
+//
+// Cobalt Rabbit, Long Walks and Oceansides, Like Home
+// 2:24-5:30ish
+// cool, smooth, slow, soft, deep
+//
+// JIKONU, difficult emotion, analysis paralysis
+// intense, hypnotic
+//
+// JIKONU, spiral, it wouldn't make much of a difference
+// slow, piano, sad
+//
+// JIKONU, spiral, everything will be ok i promise
+// harsh at end
+//
+// JIKONU, who you want me to be, epilogue
+// weird, angelic, sci-fi random sounds
+//
+function play() {
+    console.log('Play');
+    if (bgMusic.value) {
+        bgMusic.value.volume = 0.5;
+        bgMusic.value.play();
+    }
+}
 </script>
 
 <template>
-    <div ref="crtRef" class="crt">
+    <audio ref="bgMusic" src="/home.opus"></audio>
+    <div ref="crtRef" class="crt" @click="play">
         <div class="wrapper">
             <code>
                 <span class="pink">import</span> <span class="lightblue">{ types }</span> from <span class="yellow">'modelspace/virtual'</span>;<span class="cursor">&block;</span>
@@ -74,6 +103,7 @@ onMounted(() => {
     margin: 0;
     font-family: monospace;
     border-radius: 30px;
+    user-select: none;
 }
 .pink {
     color: pink;
