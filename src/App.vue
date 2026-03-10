@@ -84,12 +84,20 @@ function play() {
     }
 }
 
+let nonspace_triggered = false;
+
 function onEvent(evt) {
     //console.log(`evt = ${JSON.stringify(evt)}`);
     if (evt.type === 'write' && evt.data !== ' ') {
-        const snd = new Audio('/keystroke.opus');
-        snd.volume = 0.5;
-        snd.play();
+        if (!nonspace_triggered) {
+            const snd = new Audio('/keystroke.opus');
+            snd.volume = 0.5;
+            snd.play();
+            nonspace_triggered = true;
+        }
+    }
+    if (evt.type === 'write' && evt.data === ' ') {
+        nonspace_triggered = false;
     }
 }
 
