@@ -7,14 +7,17 @@ import Typewriter from './typewriter.vue';
 
 let bgMusic = useTemplateRef('bgMusic');
 let crtRef = useTemplateRef('crt');
+let clickRef = useTemplateRef('clickSfx');
 let playing = false;
 const data = ref([]);
 let ready = false;
 
 const cards: any = [
     [ "click to start" ],
-    [ { clear:1 }, "What do we ", { push: { bold: true } }, "do", { pop:1 }, " about you?\n" ],
-    [ { clear:1 }, "Let's just see what happens.\n" ],
+    [ { clear:1 }, "Did you hear that? Make sure you have volume on.\n\n", { push: { bold: true } }, "Click to continue", { pop:1 }],
+    [ { clear:1 }, "Clicker training is a positive reinforcement method using a\ndistinct sound." ],
+    // [ { clear:1 }, "What do we ", { push: { fg: "#ff0" } }, "do", { pop:1 }, " about you?\n" ],
+    // [ { clear:1 }, "Let's just see what happens.\n" ],
 ];
 let position: number = 0;
 
@@ -63,6 +66,9 @@ function click() {
     if (ready) {
         ready = false;
         position += 1;
+        if (clickRef.value) {
+            clickRef.value.play();
+        }
         if (position < cards.length) {
             data.value = cards[position];
         }
@@ -80,7 +86,7 @@ function play() {
 </script>
 
 <template>
-    <audio ref="click" src="/click.opus" loop></audio>
+    <audio ref="clickSfx" src="/click.opus"></audio>
     <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
     <div ref="crt" class="crt" @click="click">
         <div class="wrapper">

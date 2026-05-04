@@ -116,12 +116,12 @@ export class Terminal {
     /// clear screen, move cursor to upper left
     clear() {
         this.cursor = [0, 0];
-        this.updateCursorElem();
         for (let row = 0; row < this.rows; row++) {
             for (let col = 0; col < this.cols; col++) {
                 this.updateCell(row, col, " ");
             }
         }
+        this.updateCursorElem();
     }
     /// get single cell at specified position or throw error
     getCell(r: number, c: number): HTMLElement {
