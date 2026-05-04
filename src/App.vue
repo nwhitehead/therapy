@@ -67,7 +67,7 @@ function onEvent(evt: any) {
 </script>
 
 <template>
-    <audio ref="bgMusic" src="/home_loop.opus" loop></audio>
+    <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
     <audio ref="keystroke" src="/keystroke.opus"></audio>
     <div ref="crt" class="crt" @click="play">
         <div class="wrapper">
@@ -89,8 +89,11 @@ function onEvent(evt: any) {
     user-select: none;
 }
 .wrapper {
-    max-width: 1280px;
     text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .crt {

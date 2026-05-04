@@ -47,7 +47,7 @@ onMounted(async () => {
     text-align: left;
     white-space: pre;
     width: fit-content;
-    margin: auto;
+    margin: 0;
 }
 .terminal .row {
 }
