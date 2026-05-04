@@ -9,11 +9,14 @@ let bgMusic = useTemplateRef('bgMusic');
 let crtRef = useTemplateRef('crt');
 let playing = false;
 const data = ref([]);
+let ready = false;
 
 const cards: any = [
-    [ "What do we ", { push: { bold: true } }, "do", { pop:1 }, " about you?\n" ],
+    [ "click to start" ],
+    [ { clear:1 }, "What do we ", { push: { bold: true } }, "do", { pop:1 }, " about you?\n" ],
+    [ { clear:1 }, "Let's just see what happens.\n" ],
 ];
-let position: Number = 0;
+let position: number = 0;
 
 const speedup = 1;
 const glitchTMin = 5000 / speedup;
@@ -45,18 +48,24 @@ onMounted(() => {
     scheduleGlitch();
     // scheduleRoll();
     scheduleFlicker();
-    data.value = [
-        "What do we ", { push: { bold: true } }, "do", { pop:1 }, " about you?\n",
-    ];
+    data.value = cards[position];
 });
 
 function onReady() {
+    ready = true;
     console.log('onReady');
 }
 
 function click() {
     if (!playing) {
         play();
+    }
+    if (ready) {
+        ready = false;
+        position += 1;
+        if (position < cards.length) {
+            data.value = cards[position];
+        }
     }
 }
 
@@ -71,6 +80,7 @@ function play() {
 </script>
 
 <template>
+    <audio ref="click" src="/click.opus" loop></audio>
     <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
     <div ref="crt" class="crt" @click="click">
         <div class="wrapper">

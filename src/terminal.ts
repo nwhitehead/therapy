@@ -14,7 +14,7 @@ type Attributes = {
     underline?: boolean;
 }
 
-type MixedText = (string | { push: Attributes } | { pop:any })[];
+type MixedText = (string | { push: Attributes } | { pop: any } | { clear: any })[];
 
 /// Update a span DOM element representing one character cell of framebuffer
 function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
@@ -112,6 +112,16 @@ export class Terminal {
     moveCursor(r: number, c: number) {
         this.cursor = [r, c];
         this.updateCursorElem();
+    }
+    /// clear screen, move cursor to upper left
+    clear() {
+        this.cursor = [0, 0];
+        this.updateCursorElem();
+        for (let row = 0; row < this.rows; row++) {
+            for (let col = 0; col < this.cols; col++) {
+                this.updateCell(row, col, " ");
+            }
+        }
     }
     /// get single cell at specified position or throw error
     getCell(r: number, c: number): HTMLElement {
@@ -262,6 +272,8 @@ export class Terminal {
                     this.pushAttr(item.push);
                 } else if (item.pop !== undefined) {
                     this.popAttr();
+                } else if (item.clear !== undefined) {
+                    this.clear();
                 } else {
                     throw new Error("Unknown array item");
                 }
