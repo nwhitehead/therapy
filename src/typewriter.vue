@@ -1,12 +1,13 @@
 <script setup lang="ts">
 
-import { useTemplateRef, onMounted } from 'vue';
+import { useTemplateRef, onMounted, watch } from 'vue';
 import { Terminal } from './terminal.ts';
 
-const emit = defineEmits(['event']);
+const emit = defineEmits(['ready']);
+const props = defineProps(['data']);
 
 let container = useTemplateRef('container');
-let terminal = null;
+let terminal: Terminal | null = null;
 
 onMounted(async () => {
     if (container.value === null) throw new Error("Typewriter container is null");
@@ -14,23 +15,25 @@ onMounted(async () => {
         element: container.value,
         rows: 12,
         cols: 60,
-        eventCallback: (evt: any) => {
-            emit('event', evt);
-        }
     });
-    terminal.moveCursor(0, 0);
-    terminal.write("X\nThis is ");
-    terminal.pushAttr({ bold: true });
-    terminal.write("text");
-    terminal.popAttr();
-    terminal.write(" in the ");
-    terminal.writeAttrib("typewriter", { fg: '#ff0' });
-    terminal.write(". More text.");
-    terminal.write("\b\b\b\b\b\b\b\b\b\b\b\b\n");
-    await terminal.writeMixedAsync([
-        "What do we ", [ 'push', { bold: true }], "do", [ 'pop' ], " about you? ",
-    ]);
-    await terminal.writeAsync("All work and no play makes Jack a dull boy. ".repeat(10));
+    // terminal.moveCursor(0, 0);
+    // terminal.write("X\nThis is ");
+    // terminal.pushAttr({ bold: true });
+    // terminal.write("text");
+    // terminal.popAttr();
+    // terminal.write(" in the ");
+    // terminal.writeAttrib("typewriter", { fg: '#ff0' });
+    // terminal.write(". More text.");
+    // terminal.write("\b\b\b\b\b\b\b\b\b\b\b\b\n");
+    // await terminal.writeMixedAsync([
+    //     "What do we ", [ 'push', { bold: true }], "do", [ 'pop' ], " about you? ",
+    // ]);
+    // await terminal.writeAsync("All work and no play makes Jack a dull boy. ".repeat(10));
+    watch(props, async () => {
+        console.log('data changed');
+        await terminal?.writeMixedAsync(props.data);
+        emit('ready');
+    });
 })
 
 </script>

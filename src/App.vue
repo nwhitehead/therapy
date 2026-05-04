@@ -1,12 +1,13 @@
 <script setup lang="ts">
 
-import { useTemplateRef, onMounted } from 'vue';
+import { ref, useTemplateRef, onMounted } from 'vue';
 import Typewriter from './typewriter.vue';
 
 // crt help from: https://codepen.io/thisanimus/pen/OJpaqWz
 
 let bgMusic = useTemplateRef('bgMusic');
 let crtRef = useTemplateRef('crt');
+const data = ref([]);
 
 const speedup = 1;
 const glitchTMin = 5000 / speedup;
@@ -38,7 +39,10 @@ onMounted(() => {
     scheduleGlitch();
     // scheduleRoll();
     scheduleFlicker();
-})
+    data.value = [
+        "What do we ", [ 'push', { bold: true }], "do", [ 'pop' ], " about you?\n",
+    ];
+});
 
 function play() {
     console.log('Play');
@@ -48,30 +52,13 @@ function play() {
     }
 }
 
-let nonspace_triggered = false;
-
-function onEvent(evt: any) {
-    if (evt.type === 'write' && evt.data !== ' ') {
-        if (!nonspace_triggered) {
-            const snd = new Audio('/keystroke.opus');
-            snd.volume = 0.5;
-            snd.play();
-            nonspace_triggered = true;
-        }
-    }
-    if (evt.type === 'write' && evt.data === ' ') {
-        nonspace_triggered = false;
-    }
-}
-
 </script>
 
 <template>
     <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
-    <audio ref="keystroke" src="/keystroke.opus"></audio>
     <div ref="crt" class="crt" @click="play">
         <div class="wrapper">
-            <Typewriter @event="onEvent">
+            <Typewriter :data=data>
             </Typewriter>
         </div>
     </div>
