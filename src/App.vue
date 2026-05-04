@@ -11,7 +11,7 @@ let playing = false;
 const data = ref([]);
 
 const cards: any = [
-    [ "What do we ", [ 'push', { bold: true }], "do", [ 'pop' ], " about you?\n" ],
+    [ "What do we ", { push: { bold: true } }, "do", { pop:1 }, " about you?\n" ],
 ];
 let position: Number = 0;
 
@@ -46,7 +46,7 @@ onMounted(() => {
     // scheduleRoll();
     scheduleFlicker();
     data.value = [
-        "What do we ", [ 'push', { bold: true }], "do", [ 'pop' ], " about you?\n",
+        "What do we ", { push: { bold: true } }, "do", { pop:1 }, " about you?\n",
     ];
 });
 

@@ -14,7 +14,7 @@ type Attributes = {
     underline?: boolean;
 }
 
-type MixedText = (string | [ "push", Attributes ] | [ "pop" ])[];
+type MixedText = (string | { push: Attributes } | { pop:any })[];
 
 /// Update a span DOM element representing one character cell of framebuffer
 function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
@@ -257,10 +257,10 @@ export class Terminal {
         for (const item of msg) {
             if (typeof item === 'string') {
                 await this.writeAsync(item);
-            } else if (Array.isArray(item)) {
-                if (item[0] === 'push') {
-                    this.pushAttr(item[1]);
-                } else if (item[0] === 'pop') {
+            } else if (typeof item === 'object') {
+                if (item.push !== undefined) {
+                    this.pushAttr(item.push);
+                } else if (item.pop !== undefined) {
                     this.popAttr();
                 } else {
                     throw new Error("Unknown array item");
