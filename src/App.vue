@@ -7,47 +7,29 @@ import Typewriter from './typewriter.vue';
 
 let bgMusic = useTemplateRef('bgMusic');
 let crtRef = useTemplateRef('crt');
-let keystroke = useTemplateRef('keystroke');
 
 const speedup = 1;
 const glitchTMin = 5000 / speedup;
 const glitchTMax = 25000 / speedup;
-const rollTMin = 1000 / speedup;
-const rollTMax = 10000 / speedup;
 const flickerTMin = 1000 / speedup;
 const flickerTMax = 5000 / speedup;
 const glitchDuration = 350;
 const flickerDuration = 1000;
-const rollYMin = -2;
-const rollYMax = 2;
-const rollDurationMin = 100;
-const rollDurationMax = 300;
 
 function scheduleGlitch() {
     const delay = Math.random() * (glitchTMax - glitchTMin) + glitchTMin;
     setTimeout(() => {
-        crtRef.value.classList.add('glitch');
-        setTimeout(() => crtRef.value.classList.remove('glitch'), glitchDuration);
+        crtRef.value?.classList.add('glitch');
+        setTimeout(() => crtRef.value?.classList.remove('glitch'), glitchDuration);
         scheduleGlitch();
     }, delay);
-}
-
-function scheduleRoll(){
-    setTimeout(() => {
-        const y = (Math.random() * (rollYMax - rollYMin) + rollYMin).toFixed(1);
-        crtRef.value.style.transform = `translateY(${y}px)`;
-        setTimeout(() => {
-            crtRef.value.style.transform = 'translateY(0)';
-        }, rollDurationMin + Math.random() * (rollDurationMax - rollDurationMin));
-        scheduleRoll();
-    }, rollTMin + Math.random() * (rollTMax - rollTMin));
 }
 
 function scheduleFlicker() {
     const delay = Math.random() * (flickerTMax - flickerTMin) + flickerTMin;
     setTimeout(() => {
-        crtRef.value.classList.add('flicker');
-        setTimeout(() => crtRef.value.classList.remove('flicker'), flickerDuration);
+        crtRef.value?.classList.add('flicker');
+        setTimeout(() => crtRef.value?.classList.remove('flicker'), flickerDuration);
         scheduleFlicker();
     }, delay);
 }
@@ -68,8 +50,7 @@ function play() {
 
 let nonspace_triggered = false;
 
-function onEvent(evt) {
-    //console.log(`evt = ${JSON.stringify(evt)}`);
+function onEvent(evt: any) {
     if (evt.type === 'write' && evt.data !== ' ') {
         if (!nonspace_triggered) {
             const snd = new Audio('/keystroke.opus');

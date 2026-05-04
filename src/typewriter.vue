@@ -12,11 +12,13 @@ onMounted(async () => {
     if (container.value === null) throw new Error("Typewriter container is null");
     terminal = new Terminal({
         element: container.value,
-        eventCallback: (evt) => {
+        rows: 12,
+        cols: 60,
+        eventCallback: (evt: any) => {
             emit('event', evt);
         }
     });
-    terminal.moveCursor(20, 0);
+    terminal.moveCursor(0, 0);
     terminal.write("X\nThis is ");
     terminal.pushAttr({ bold: true });
     terminal.write("text");
@@ -28,7 +30,7 @@ onMounted(async () => {
     await terminal.writeMixedAsync([
         "What do we ", [ 'push', { bold: true }], "do", [ 'pop' ], " about you? ",
     ]);
-    terminal.writeAsync("All work and no play makes Jack a dull boy. ".repeat(10));
+    await terminal.writeAsync("All work and no play makes Jack a dull boy. ".repeat(10));
 })
 
 </script>
@@ -42,9 +44,10 @@ onMounted(async () => {
 .terminal {
     line-height: 1.5em;
     padding: 0;
-    margin: 0;
     text-align: left;
     white-space: pre;
+    width: fit-content;
+    margin: auto;
 }
 .terminal .row {
 }
@@ -61,4 +64,5 @@ onMounted(async () => {
     left: 0;
     top: 0;
 }
+
 </style>

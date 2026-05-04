@@ -75,6 +75,24 @@ html {
   min-height: 100%;
 }
 
+@media screen and (max-width: 886px) {
+    html {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    html {
+        font-size: 1.0rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 0.8rem;
+    }
+}
+
 main {
   width: 100vw;
   height: 100vh;

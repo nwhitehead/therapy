@@ -40,7 +40,7 @@ function getCellData(c: HTMLElement): [string, Attributes] {
 }
 
 // delay for specified number of milliseconds
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export class Terminal {
     /// size of terminal, rows
