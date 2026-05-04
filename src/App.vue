@@ -7,7 +7,13 @@ import Typewriter from './typewriter.vue';
 
 let bgMusic = useTemplateRef('bgMusic');
 let crtRef = useTemplateRef('crt');
+let playing = false;
 const data = ref([]);
+
+const cards: any = [
+    [ "What do we ", [ 'push', { bold: true }], "do", [ 'pop' ], " about you?\n" ],
+];
+let position: Number = 0;
 
 const speedup = 1;
 const glitchTMin = 5000 / speedup;
@@ -44,8 +50,18 @@ onMounted(() => {
     ];
 });
 
+function onReady() {
+    console.log('onReady');
+}
+
+function click() {
+    if (!playing) {
+        play();
+    }
+}
+
 function play() {
-    console.log('Play');
+    playing = true;
     if (bgMusic.value) {
         bgMusic.value.volume = 0.5;
         bgMusic.value.play();
@@ -56,9 +72,9 @@ function play() {
 
 <template>
     <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
-    <div ref="crt" class="crt" @click="play">
+    <div ref="crt" class="crt" @click="click">
         <div class="wrapper">
-            <Typewriter :data=data>
+            <Typewriter :data=data @ready="onReady">
             </Typewriter>
         </div>
     </div>
