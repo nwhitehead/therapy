@@ -16,19 +16,6 @@ onMounted(async () => {
         rows: 12,
         cols: 60,
     });
-    // terminal.moveCursor(0, 0);
-    // terminal.write("X\nThis is ");
-    // terminal.pushAttr({ bold: true });
-    // terminal.write("text");
-    // terminal.popAttr();
-    // terminal.write(" in the ");
-    // terminal.writeAttrib("typewriter", { fg: '#ff0' });
-    // terminal.write(". More text.");
-    // terminal.write("\b\b\b\b\b\b\b\b\b\b\b\b\n");
-    // await terminal.writeMixedAsync([
-    //     "What do we ", [ 'push', { bold: true }], "do", [ 'pop' ], " about you? ",
-    // ]);
-    // await terminal.writeAsync("All work and no play makes Jack a dull boy. ".repeat(10));
     watch(props, async () => {
         console.log('data changed');
         await terminal?.writeMixedAsync(props.data);

@@ -12,12 +12,17 @@ let playing = false;
 const data = ref([]);
 let ready = false;
 
+function f(lst) {
+    return [ { clear: 1}, ...lst, { push: { bold: true } }, "\nClick to continue", { pop:1 }];
+}
+
 const cards: any = [
-    [ "click to start" ],
-    [ { clear:1 }, "Did you hear that? Make sure you have volume on.\n\n", { push: { bold: true } }, "Click to continue", { pop:1 }],
-    [ { clear:1 }, "Clicker training is a positive reinforcement method using a\ndistinct sound." ],
+    [  { push: { bold: true } }, "click to start", { pop:1 } ],
+    f([ "Did you hear that? Make sure you have volume on.\n" ]),
+    f([ "Clicker training is a positive reinforcement method using a\ndistinct sound.\n" ]),
     // [ { clear:1 }, "What do we ", { push: { fg: "#ff0" } }, "do", { pop:1 }, " about you?\n" ],
     // [ { clear:1 }, "Let's just see what happens.\n" ],
+    [ { clear: 1} ],
 ];
 let position: number = 0;
 
@@ -66,11 +71,11 @@ function click() {
     if (ready) {
         ready = false;
         position += 1;
-        if (clickRef.value) {
-            clickRef.value.play();
-        }
         if (position < cards.length) {
             data.value = cards[position];
+            if (clickRef.value) {
+                clickRef.value.play();
+            }
         }
     }
 }
