@@ -53,29 +53,11 @@ function scheduleFlicker() {
 }
 
 onMounted(() => {
-    // scheduleGlitch();
+    scheduleGlitch();
     // scheduleRoll();
     scheduleFlicker();
 })
 
-// Ideas for bg music:
-//
-// Cobalt Rabbit, Long Walks and Oceansides, Like Home
-// 2:24-5:30ish
-// cool, smooth, slow, soft, deep
-//
-// JIKONU, difficult emotion, analysis paralysis
-// intense, hypnotic
-//
-// JIKONU, spiral, it wouldn't make much of a difference
-// slow, piano, sad
-//
-// JIKONU, spiral, everything will be ok i promise
-// harsh at end
-//
-// JIKONU, who you want me to be, epilogue
-// weird, angelic, sci-fi random sounds
-//
 function play() {
     console.log('Play');
     if (bgMusic.value) {
@@ -160,10 +142,10 @@ function onEvent(evt) {
 
 @keyframes glitch {
     0% { transform: translate(0); opacity: 1; filter: none; }
-    20% { transform: translate(-2px, 2px) skew(1deg,1deg); filter: blur(1px); }
-    40% { transform: translate(2px,-2px) skew(-1deg,-1deg); filter: blur(1px); }
-    60% { transform: translate(-1px,1px) skew(0.5deg,0.5deg); opacity: 0.9; }
-    80% { transform: translate(1px,-1px) skew(-0.5deg,-0.5deg); opacity: 1; }
+    20% { transform: translate(-2px, 2px) skew(0.5deg,0.5deg); filter: blur(1px); }
+    40% { transform: translate(2px,-2px) skew(-0.5deg,-0.5deg); filter: blur(1px); }
+    60% { transform: translate(-1px,1px) skew(0.25deg,0.25deg); opacity: 0.9; }
+    80% { transform: translate(1px,-1px) skew(-0.25deg,-0.25deg); opacity: 1; }
     100% { transform: translate(0); opacity: 1; filter: none; }
 }
 
