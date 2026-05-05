@@ -17,7 +17,6 @@ onMounted(async () => {
         cols: 60,
     });
     watch(props, async () => {
-        console.log('data changed');
         await terminal?.writeMixedAsync(props.data);
         emit('ready');
     });

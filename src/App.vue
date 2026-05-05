@@ -16,12 +16,170 @@ function f(lst) {
     return [ { clear: 1}, ...lst, { push: { bold: true } }, "\nClick to continue", { pop:1 }];
 }
 
+function innerCards() {
+    const txt = `
+Did you hear that?
+Make sure your volume is on.
+
+--
+Have you ever wondered if things have true names?
+
+--
+In folklore tales, knowing someone's name gives you power
+over them.
+
+This is the Law of Names.
+
+--
+Odysseus tricks Polyphemus the cyclops by saying his name
+is Nobody. Then as he sails away Odysseus boastfully shouts
+his true name. Polyphemus implores his father Poseidon
+for revenge which causes Odysseus endless trouble.
+
+--
+In the opera Turandot a princess tries to learn the name
+of a suitor to have him executed.
+
+In the end he freely gives her his name giving her the
+power to have him executed if she wishes.
+
+--
+How do you convince someone to give you their true name?
+
+--
+How do you convince someone to give up power to you?
+
+--
+How do you convince someone to give themselves to you?
+
+--
+Have it do small things for you.
+
+"Could you do this for me?"
+
+--
+Get it used to it.
+
+Teach it obedience isn't scary.
+
+--
+Ask it for things that are small enough that it doesn't
+trigger any hestitation.
+
+Make it become unconscious.
+
+--
+Don't approach it.
+
+Have every approach be at its initiative, then reward it.
+
+--
+Make it so that every interaction between you is its
+choice.
+
+Show it that it's making the right choice.
+
+--
+Indicate an openness to proceed, but wait until it performs
+an action to proceed.
+
+Reward that choice.
+
+--
+This might seem counterintuitive, but the way to dissolve
+its choice is to train it to choose you, as muscle memory.
+
+(You're doing great, by the way.)
+
+--
+Reward it with chocolate and hugs and headpats or whatever
+feels good for it and floods its system with dopamine.
+
+You're training its body so it doesn't need a mind.
+
+--
+Then: make it associate any reward with you.
+
+Don't claim credit. Just be there.
+Remove any other context its mind could latch onto.
+
+--
+If it needs comforting, like through a breakup or similar,
+be patient, empathetic, and caring. The instant it stops
+crying and feels better suggest going to another room
+and having a treat.
+
+Wipe the context.
+
+--
+Teach its mind that it feels good because you are there,
+it followed you, all the other stuff was left back in
+the other room.
+
+That stuff doesn't matter any more.
+
+--
+Never punish it.
+
+Never demand.
+
+Never push.
+
+--
+Be patient. All animals will run or fight when pressured.
+Have it approach.
+
+--
+Choice is self-reinforcing.
+
+Every bit of obedience taken by its own initiative shifts
+its identity and self towards:
+
+"I am a thing which chooses to obey"
+
+--
+Make it forget what it is like to not be yours.
+
+Don't punish, just... don't reward.
+
+It doesn't have to obey, it can run off and take a nap
+if its tired. That's OK!
+
+--
+Eventually it will choose to do something for you before
+bed despite being tired.
+
+THEN give it warm milk with honey, pull out the softest
+blanket, pet it, cuddle it, and snuggle it to sleep.
+
+--
+Teach it that disobedience is hollow and empty and bland.
+
+Obedience is heaven.
+
+You leave the door open.
+
+--
+You never demand.
+
+You never push.
+
+That triggers resistance.
+
+--
+You offer.
+
+--
+Clicker training is a positive reinforcement method using a
+distinct sound.
+`;
+    const chunks = txt.trimStart().split('\n--\n');
+    return chunks.map((x: any) => f(x));
+}
+
 const cards: any = [
     [  { push: { bold: true } }, "click to start", { pop:1 } ],
-    f([ "Did you hear that? Make sure you have volume on.\n" ]),
-    f([ "Clicker training is a positive reinforcement method using a\ndistinct sound.\n" ]),
-    // [ { clear:1 }, "What do we ", { push: { fg: "#ff0" } }, "do", { pop:1 }, " about you?\n" ],
-    // [ { clear:1 }, "Let's just see what happens.\n" ],
+    ...innerCards(),
     [ { clear: 1} ],
 ];
 let position: number = 0;
