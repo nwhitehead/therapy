@@ -13,6 +13,7 @@ type Attributes = {
     bg?: string;
     bold?: boolean;
     underline?: boolean;
+    italic?: boolean;
 }
 
 type MixedText = (string | { push: Attributes } | { pop: any } | { clear: any })[];
@@ -25,6 +26,7 @@ function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
         if (attr.bg !== undefined) c.style.backgroundColor = attr.bg;
         if (attr.bold) c.style.fontWeight = 'bold';
         if (attr.underline) c.style.textDecoration = 'underline';
+        if (attr.italic) c.style.fontStyle = 'italic';
     }
     c.textContent = txt;
 }
@@ -37,6 +39,7 @@ function getCellData(c: HTMLElement): [string, Attributes] {
     if (c.style.backgroundColor !== '') attr.bg = c.style.backgroundColor;
     if (c.style.fontWeight === 'bold') attr.bold = true;
     if (c.style.textDecoration === 'underline') attr.underline = true;
+    if (c.style.fontStyle === 'italic') attr.italic = true;
     return [txt, attr];
 }
 

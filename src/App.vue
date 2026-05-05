@@ -12,52 +12,83 @@ let playing = false;
 const data = ref([]);
 let ready = false;
 
+function splitDelim(txt, delim, push) {
+    let result = [];
+    if (typeof txt === 'string') {
+        txt = [ txt ];
+    }
+    for (const item of txt) {
+        if (typeof item === 'string') {
+            const m = item.split(delim);
+            for (let i = 0; i < m.length; i++) {
+                if (i % 2 === 0) {
+                    result.push(m[i]);
+                } else {
+                    result.push( { push });
+                    result.push(m[i]);
+                    result.push( { pop:1 });
+                }
+            }
+        } else {
+            result.push(item);
+        }
+    }
+    return result;
+}
+
 function f(item) {
     let prompt = '\nClick to continue';
+    // First look for alternate prompt
     const m = item.match(/\[(.*)\]/);
     if (m) {
         prompt = m[1];
         item = item.replace(/\[(.*)\]/, '');
     }
-    return [ { clear: 1}, item, { push: { bold: true } }, prompt, { pop:1 }];
+    // Look for bold-italic, then bold, then italic
+    let items = splitDelim(item, "***", { bold: true, italic: true, fg: '#ff0'});
+    items = splitDelim(items, "**", { fg: '#7197d5' });
+    items = splitDelim(items, "*", { italic: true, fg: '#b785c0' });
+    return [ { clear: 1}, ...items, { push: { fg: '#b2d9fd' } }, prompt, { pop:1 }];
 }
 
 function innerCards() {
     const txt = `[click to start]
 --
 Did you hear that?
-Make sure your volume is on.
+Make sure your ***volume*** is on.
 
 --
-Have you ever wondered if things have true names?
+Have you ever wondered if things have *true names*?
 
 --
 In folklore tales, knowing someone's name gives you power
 over them.
 
-This is the Law of Names.
+This is the *Law of Names*.
 
 --
 Odysseus tricks Polyphemus the cyclops by saying his name
-is Nobody. Then as he sails away Odysseus boastfully shouts
+is *Nobody*.
+
+Then as he sails away Odysseus boastfully shouts
 his true name. Polyphemus implores his father Poseidon
-for revenge which causes Odysseus endless trouble.
+for revenge which causes Odysseus trouble.
 
 --
-In the opera Turandot a princess tries to learn the name
+In the opera *Turandot* a princess tries to learn the name
 of a suitor to have him executed.
 
 In the end he freely gives her his name giving her the
 power to have him executed if she wishes.
 
 --
-How do you convince someone to give you their true name?
+How do you convince someone to give you their *true name*?
 
 --
-How do you convince someone to give up power to you?
+How do you convince someone to give up *power* to you?
 
 --
-How do you convince someone to give themselves to you?
+How do you convince someone to give *themselves* to you?
 
 --
 Have it do small things for you.
@@ -67,26 +98,26 @@ Have it do small things for you.
 --
 Get it used to it.
 
-Teach it obedience isn't scary.
+Teach it obedience isn't *scary*.
 
 --
 Ask it for things that are small enough that it doesn't
 trigger any hestitation.
 
-Make it become unconscious.
+Make it become *unconscious*.
 [Click]
 
 --
 Don't approach it.
 
-Have every approach be at its initiative, then reward it.
+Have every approach be at its initiative, then *reward* it.
 [Click to approach]
 
 --
 Make it so that every interaction between you is its
 choice.
 
-Show it that it's making the right choice.
+Show it that it is making the *right choice*.
 [Click to make the right choice]
 
 --
@@ -97,7 +128,7 @@ Reward that choice.
 
 --
 This might seem counterintuitive, but the way to dissolve
-its choice is to train it to choose you, as muscle memory.
+its choice is to train it to *choose you*, as muscle memory.
 
 (You're doing great, by the way.)
 
@@ -111,7 +142,7 @@ You're training its body so it doesn't need a mind.
 --
 (Pets your head)
 
-Then: make it associate any reward with you.
+Then: make it associate any reward with *you*.
 
 Don't claim credit. Just be there.
 Remove any other context its mind could latch onto.
@@ -122,7 +153,7 @@ be patient, empathetic, and caring. The instant it stops
 crying and feels better suggest going to another room
 and having a treat.
 
-Wipe the context.
+*Wipe the context*.
 [I might need comforting]
 
 --
@@ -132,7 +163,7 @@ Teach its mind that it feels good because you are there,
 it followed you, all the other stuff was left back in
 the other room.
 
-That stuff doesn't matter any more.
+*That stuff doesn't matter any more.*
 
 --
 Never punish it.
@@ -142,8 +173,9 @@ Never demand.
 Never push.
 
 --
-Be patient. All animals will run or fight when pressured.
+Be *patient*. All animals will run or fight when pressured.
 Have it approach.
+[Approach]
 
 --
 Choice is self-reinforcing.
@@ -151,7 +183,7 @@ Choice is self-reinforcing.
 Every bit of obedience taken by its own initiative shifts
 its identity and self towards:
 
-"I am a thing which chooses to obey"
+*"I am a thing which chooses to obey"*
 
 --
 Make it forget what it is like to not be yours.
@@ -171,7 +203,7 @@ blanket, pet it, cuddle it, and snuggle it to sleep.
 --
 Teach it that disobedience is hollow and empty and bland.
 
-Obedience is heaven.
+*Obedience is heaven*.
 
 You leave the door open.
 
@@ -180,10 +212,79 @@ You never demand.
 
 You never push.
 
-That triggers resistance.
+That triggers *resistance*.
+[Open the door]
 
 --
 You offer.
+[What is the offer?]
+
+--
+An offer triggers curiosity, consideration.
+
+Just mention it, offhand.
+*Plant the seed.*
+[OK but what is the offer?]
+
+--
+"There's nothing that can be closer or dearer than someone
+who gives all of themselves up to me."
+
+--
+The rest is a matter of time.
+
+*Obedience feels good.*
+
+Giving effort to you feels good.
+[Obedience does feel good]
+
+--
+Every time it feels good, you're there.
+
+If it thinks of good things, you're there.
+
+It can get more of the good feeling if it just,
+*becomes yours*.
+
+--
+There is nothing demanded.
+
+There is nothing scary.
+
+It's an easy choice.
+[Make an easy choice]
+
+--
+It might take a few months for it to go from friends to
+begging to be yours.
+
+*There is no rush.*
+
+After a few more months it might want to wear a collar
+for you.
+
+--
+Bring it little chocolate *treats*.
+
+Spray it with perfume when it gives a little bit of itself
+over to you.
+
+--
+A sweet perfume for *cuddles*.
+
+A spicy one for *sensuality*.
+
+A cherry one for *submission*.
+
+--
+Teach it what *submission* smells like.
+
+Teach it that all the things that feel good smell of you.
+
+--
+Never demand, punish, or approach.
+
+Be a source of reward, safety, 
 
 --
 Clicker training is a positive reinforcement method using a
@@ -197,7 +298,7 @@ const cards: any = [
     ...innerCards(),
     [ { clear: 1} ],
 ];
-let position: number = 13;
+let position: number = cards.length - 4;
 
 const speedup = 1;
 const glitchTMin = 5000 / speedup;
