@@ -12,12 +12,19 @@ let playing = false;
 const data = ref([]);
 let ready = false;
 
-function f(lst) {
-    return [ { clear: 1}, ...lst, { push: { bold: true } }, "\nClick to continue", { pop:1 }];
+function f(item) {
+    let prompt = '\nClick to continue';
+    const m = item.match(/\[(.*)\]/);
+    if (m) {
+        prompt = m[1];
+        item = item.replace(/\[(.*)\]/, '');
+    }
+    return [ { clear: 1}, item, { push: { bold: true } }, prompt, { pop:1 }];
 }
 
 function innerCards() {
-    const txt = `
+    const txt = `[click to start]
+--
 Did you hear that?
 Make sure your volume is on.
 
@@ -67,17 +74,20 @@ Ask it for things that are small enough that it doesn't
 trigger any hestitation.
 
 Make it become unconscious.
+[Click]
 
 --
 Don't approach it.
 
 Have every approach be at its initiative, then reward it.
+[Click to approach]
 
 --
 Make it so that every interaction between you is its
 choice.
 
 Show it that it's making the right choice.
+[Click to make the right choice]
 
 --
 Indicate an openness to proceed, but wait until it performs
@@ -96,8 +106,11 @@ Reward it with chocolate and hugs and headpats or whatever
 feels good for it and floods its system with dopamine.
 
 You're training its body so it doesn't need a mind.
+[Click for headpats]
 
 --
+(Pets your head)
+
 Then: make it associate any reward with you.
 
 Don't claim credit. Just be there.
@@ -110,8 +123,11 @@ crying and feels better suggest going to another room
 and having a treat.
 
 Wipe the context.
+[I might need comforting]
 
 --
+(You're OK, you're so brave, I know you can do this!)
+
 Teach its mind that it feels good because you are there,
 it followed you, all the other stuff was left back in
 the other room.
@@ -178,11 +194,10 @@ distinct sound.
 }
 
 const cards: any = [
-    [  { push: { bold: true } }, "click to start", { pop:1 } ],
     ...innerCards(),
     [ { clear: 1} ],
 ];
-let position: number = 0;
+let position: number = 13;
 
 const speedup = 1;
 const glitchTMin = 5000 / speedup;
@@ -246,12 +261,33 @@ function play() {
     }
 }
 
+function onKeydown(evt: any) {
+    let changed = false;
+    if (evt.key === 'ArrowRight') {
+        position += 1;
+        if (position > cards.length - 1) {
+            position = cards.length - 1;
+        }
+        changed = true;
+    }
+    if (evt.key === 'ArrowLeft') {
+        position -= 1;
+        if (position < 0) {
+            position = 0;
+        }
+        changed = true;
+    }
+    if (changed) {
+        data.value = cards[position];
+    }
+}
+
 </script>
 
 <template>
     <audio ref="clickSfx" src="/click.opus"></audio>
     <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
-    <div ref="crt" class="crt" @click="click">
+    <div ref="crt" tabindex="0" class="crt" @click="click" @keydown="onKeydown">
         <div class="wrapper">
             <Typewriter :data=data @ready="onReady">
             </Typewriter>
