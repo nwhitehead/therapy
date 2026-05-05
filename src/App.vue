@@ -133,7 +133,7 @@ its choice is to train it to *choose you*, as muscle memory.
 (You're doing great, by the way.)
 
 --
-Reward it with chocolate and hugs and headpats or whatever
+Reward it with chocolate 🍫 and hugs and headpats or whatever
 feels good for it and floods its system with dopamine.
 
 You're training its body so it doesn't need a mind.
@@ -264,7 +264,7 @@ After a few more months it might want to wear a collar
 for you.
 
 --
-Bring it little chocolate *treats*.
+Bring it little chocolate *treats* 🍫.
 
 Spray it with perfume when it gives a little bit of itself
 over to you.
@@ -277,14 +277,25 @@ A spicy one for *sensuality*.
 A cherry one for *submission*.
 
 --
-Teach it what *submission* smells like.
+Teach it what *submission* smells like. When it smells
+cherry on you, 🍒, it submits.
 
 Teach it that all the things that feel good smell of you.
 
 --
 Never demand, punish, or approach.
 
-Be a source of reward, safety, 
+Be a source of reward, safety, and care.
+
+Make disobedience, resistance, independence, personhood...
+uninteresting. Boring. Not wrong, just hollow.
+
+--
+Teach it that it is so much better being *Yours*.
+🍒
+[Submit]
+
+--
 
 --
 Clicker training is a positive reinforcement method using a
