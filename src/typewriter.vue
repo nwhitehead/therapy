@@ -8,6 +8,7 @@ const props = defineProps(['data']);
 
 let container = useTemplateRef('container');
 let terminal: Terminal | null = null;
+let controller: AbortController = new AbortController();
 
 onMounted(async () => {
     if (container.value === null) throw new Error("Typewriter container is null");
@@ -18,7 +19,9 @@ onMounted(async () => {
         delay: 0,
     });
     watch(props, async () => {
-        await terminal?.writeMixedAsync(props.data);
+        controller.abort();
+        controller = new AbortController();
+        await terminal?.writeMixedAsync(props.data, controller.signal);
         emit('ready');
     });
 })

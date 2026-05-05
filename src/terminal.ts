@@ -120,6 +120,8 @@ export class Terminal {
     /// clear screen, move cursor to upper left
     clear() {
         this.cursor = [0, 0];
+        this.attr = {};
+        this.attrs = [];
         for (let row = 0; row < this.rows; row++) {
             for (let col = 0; col < this.cols; col++) {
                 this.updateCell(row, col, " ");
@@ -257,34 +259,59 @@ export class Terminal {
             }
         }
     }
-    async writeAsync(data:string) {
-        for (const ch of data) {
-            this.writeChar(ch);
-            await delay(this.delay);
-            if (this.callback) {
-                this.callback({ type: 'write', data: ch});
+    async writeAsync(data:string, signal: AbortSignal) {
+        if (signal?.aborted) {
+            return;
+        }
+        try {
+            for (const ch of data) {
+                this.writeChar(ch);
+                await delay(this.delay);
+                if (this.callback) {
+                    this.callback({ type: 'write', data: ch});
+                }
+                signal?.throwIfAborted();
+            }
+        } catch (err:any) {
+            if (err.name === 'AbortError') {
+                // Expected, no error
+            } else {
+                throw(err);
             }
         }
     }
     /// write mixed text that incorporates attribute push/pop
-    async writeMixedAsync(msg: MixedText) {
-        for (const item of msg) {
-            if (typeof item === 'string') {
-                await this.writeAsync(item);
-            } else if (typeof item === 'object') {
-                if (item.push !== undefined) {
-                    this.pushAttr(item.push);
-                } else if (item.pop !== undefined) {
-                    this.popAttr();
-                } else if (item.clear !== undefined) {
-                    this.clear();
+    async writeMixedAsync(msg: MixedText, signal: AbortSignal) {
+        if (signal?.aborted) {
+            return;
+        }
+        try {
+            for (const item of msg) {
+                signal?.throwIfAborted();
+                if (typeof item === 'string') {
+                    await this.writeAsync(item, signal);
+                } else if (typeof item === 'object') {
+                    if (item.push !== undefined) {
+                        this.pushAttr(item.push);
+                    } else if (item.pop !== undefined) {
+                        this.popAttr();
+                    } else if (item.clear !== undefined) {
+                        this.clear();
+                    } else {
+                        throw new Error("Unknown array item");
+                    }
                 } else {
-                    throw new Error("Unknown array item");
+                    throw new Error("Unknown item type");
                 }
-            } else {
-                throw new Error("Unknown item type");
+                await delay(this.delay);
+                signal?.throwIfAborted();
             }
-            await delay(this.delay);
+        } catch (err:any) {
+            if (err.name === 'AbortError') {
+                // Expected case, no error here
+            } else {
+                throw(err);
+            }
         }
     }
 }

@@ -346,7 +346,6 @@ onMounted(() => {
 
 function onReady() {
     ready = true;
-    console.log('onReady');
 }
 
 function click() {
