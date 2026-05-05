@@ -5,6 +5,7 @@ type Options = {
     element?: HTMLElement;
     classPrefix?: string;
     eventCallback?: any;
+    delay?: number;
 }
 
 type Attributes = {
@@ -70,7 +71,7 @@ export class Terminal {
         const prefix = this.classPrefix;
         this.rows = opts.rows ?? 25;
         this.cols = opts.cols ?? 80;
-        this.delay = 20;
+        this.delay = opts.delay ?? 20;
         this.cursor = [0, 0];
         this.attr = {};
         this.attrs = [];

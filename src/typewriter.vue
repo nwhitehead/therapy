@@ -15,6 +15,7 @@ onMounted(async () => {
         element: container.value,
         rows: 12,
         cols: 60,
+        delay: 0,
     });
     watch(props, async () => {
         await terminal?.writeMixedAsync(props.data);

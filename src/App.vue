@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { ref, useTemplateRef, onMounted } from 'vue';
+import { ref, useTemplateRef, onMounted, nextTick } from 'vue';
 import Typewriter from './typewriter.vue';
 
 // crt help from: https://codepen.io/thisanimus/pen/OJpaqWz
@@ -276,6 +276,12 @@ function onKeydown(evt: any) {
             position = 0;
         }
         changed = true;
+    }
+    if (evt.key === ' ') {
+        data.value = '';
+        nextTick(() => {
+            data.value = cards[position];
+        });
     }
     if (changed) {
         data.value = cards[position];
