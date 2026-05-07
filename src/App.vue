@@ -6,6 +6,8 @@ import { position } from './useStore.ts';
 
 // Music ideas:
 // Yet fragments of something greater
+// Remember all of this when you return
+// Deeper
 
 // crt help from: https://codepen.io/thisanimus/pen/OJpaqWz
 
@@ -132,13 +134,13 @@ an *action* to proceed.
 Reward that choice.
 
 --
-(❤️ You're doing great, by the way! ❤️)
+(❤️❤️ You're doing great, by the way! ❤️)
 
 This might seem counterintuitive, but the way to dissolve
 its choice is to train it to *choose you*, as muscle memory.
 
 --
-Reward it with chocolate 🍫 and hugs and headpats or
+Reward it with chocolate 🍫  and hugs and headpats or
 whatever feels good for it and floods its system with
 dopamine.
 
