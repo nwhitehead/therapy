@@ -81,15 +81,17 @@ Odysseus tricks Polyphemus the cyclops by saying his name
 is *Nobody*.
 
 Then as he sails away Odysseus boastfully shouts
-his *true name*. Polyphemus implores his father Poseidon
-for revenge which causes Odysseus trouble.
+his *true name*. Polyphemus then implores his father
+Poseidon for revenge which causes Odysseus trouble.
 
 --
 In the opera *Turandot* a princess tries to learn the name
-of a suitor to have him executed.
+of her suitor to have him executed.
 
 In the end he freely gives her his name giving her the
 power to have him executed if she wishes.
+
+She's the one in *control*.
 
 --
 How do you convince someone to give you their *true name*?
@@ -102,9 +104,9 @@ How do you convince someone to give *themselves* to you?
 
 --
 The trick is to help dissolve their *independence* and
-their sense of *self*.
+their sense of *self*, even their *personhood*.
 
-If you succeed then the barriers fall away.
+The barriers will fall away if you succeed.
 
 --
 What *you want* becomes what you *both want*.
@@ -115,6 +117,7 @@ Start *small*.
 Have it do small things for you.
 
 Ask for a tiny favor.
+[Click]
 
 --
 Get it used to listening.
@@ -126,7 +129,6 @@ Ask it for things that are small enough that it doesn't
 trigger any hestitation.
 
 Make it become *unconscious*.
-[Click]
 
 --
 Don't approach it.
@@ -135,6 +137,8 @@ Have every approach be at its initiative, then *reward* it.
 [Click to approach]
 
 --
+(Good job! here's a little treat 🍩 )
+
 Make it so that every interaction between you is its
 choice.
 
@@ -215,7 +219,7 @@ Don't punish, just... don't reward.
 --
 It doesn't have to obey.
 
-It can run off and take a nap if its tired. That's OK!
+It can run off and take a nap if its tired. That's fine!
 
 --
 Eventually it will *choose* to do something for you despite
@@ -288,7 +292,7 @@ You're there waiting.
 [Click to be there]
 
 --
-Bring it little *treats* 🍪.
+Bring it little *treats* 🍰 .
 
 Reward it with special perfume scents every time it gives a
 little bit of itself over to you.
@@ -324,9 +328,20 @@ Teach it that it is so much better being *Yours*.
 
 By the time you own it completely it will be so well
 broken in... you can just tell it openly about how it
-was brainwashed and conditioned to be this way.
+was conditioned to be this way.
 
-It will just *swoon*.
+--
+It won't mind.
+
+It will be *enamored* of you and want *more*.
+
+--
+It will think:
+
+***"I am a thing which chooses to obey"***
+
+Or maybe it will stop thinking and just be.
+[Click to just be]
 
 --
 Clicker training is a *positive reinforcement method* using a
