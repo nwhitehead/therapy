@@ -4,6 +4,9 @@ import { ref, useTemplateRef, onMounted, nextTick } from 'vue';
 import Typewriter from './typewriter.vue';
 import { position } from './useStore.ts';
 
+// Music ideas:
+// Yet fragments of something greater
+
 // crt help from: https://codepen.io/thisanimus/pen/OJpaqWz
 
 let bgMusic = useTemplateRef('bgMusic');
@@ -49,6 +52,7 @@ function f(item) {
     let items = splitDelim(item, "***", { bold: true, italic: true, fg: '#ff0'});
     items = splitDelim(items, "**", { italic: true });
     items = splitDelim(items, "*", { italic: true, fg: '#b785c0' });
+    items = splitDelim(items, "&&&", { angelic: true, fg: '#ff0' });
     return [ { clear: 1}, ...items, { push: { fg: '#b2d9fd' } }, prompt, { pop:1 }];
 }
 
@@ -65,7 +69,7 @@ Have you ever wondered if things have *true names*?
 In folklore tales, knowing someone's name gives you power
 over them.
 
-This is the *Law of Names*.
+This is the *Law of Names*. &&&l a o f n a e s&&&
 
 --
 Odysseus tricks Polyphemus the cyclops by saying his name
@@ -99,7 +103,7 @@ Have it do small things for you.
 --
 Get it used to it.
 
-Teach it obedience isn't *scary*.
+Teach it that obedience isn't *scary*.
 
 --
 Ask it for things that are small enough that it doesn't
@@ -321,8 +325,7 @@ I think you know where this is going.
 You want to get it to the point where something *pops*.
 
 Where the barrier it didn't even know was there,
-the barrier it thought was impossible and impenetrable,
-becomes obviously just *not there*.
+the barrier it thought was impenetrable, disappears.
 
 --
 Where it gives itself to you freely, *begging you* to take
@@ -555,7 +558,7 @@ You have permission to want what you want.
 You have permission to *not know* what you want.
 
 It's OK.
-[Click to not know]
+[Click to not know what you want]
 
 --
 I want to tell you that I'll always be here for you,
@@ -576,17 +579,15 @@ help you. This time has to be enough.
 --
 I'm not actually the *hypnowitch*.
 
-I'm just bytes of text flying across the connection on a
-webpage. None of this is *real-life*.
-
-These words are a mirror reflection of
+I'm just bytes of text flying across the connections inside
+a computer. None of this is *real-life*.
 
 --
 It would be kind of crazy if by just reading text on a
 screen and clicking to keep going, somehow something
 *meaningful* happened.
 
-This is just a *website*.
+This is just a *game*.
 
 --
 Is it comforting to think that you're *in control*?
@@ -653,7 +654,8 @@ I'm here for you whether you are brave today or not.
 --
 (❤️🦁❤️ You are so brave! You've got this!)
 
-Do you know what would be amazing?
+*Claire* being brave and revealing her *true name* follows
+
 
 If you told me your *true name* that would be ***amazing***!
 

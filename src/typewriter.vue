@@ -42,7 +42,10 @@ onMounted(async () => {
     width: fit-content;
     margin: 0;
 }
-.terminal .row {
+.terminal .row span {
+    display: inline-block;
+    width: 0.605em;
+    height: 1.5em;
 }
 @keyframes blinkTextCursor {
     0% { opacity: 1; }
