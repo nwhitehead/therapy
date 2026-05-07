@@ -44,6 +44,7 @@ onMounted(async () => {
 }
 .terminal .row span {
     display: inline-block;
+    font-variant-emoji: emoji;
     width: 0.605em;
     height: 1.5em;
 }
