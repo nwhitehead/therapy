@@ -54,14 +54,17 @@ function f(item) {
     let items = splitDelim(item, "***", { bold: true, italic: true, fg: '#ff0'});
     items = splitDelim(items, "**", { italic: true });
     items = splitDelim(items, "*", { italic: true, fg: '#b785c0' });
-    items = splitDelim(items, "&&&", { angelic: true, fg: '#ff0' });
+    items = splitDelim(items, "&&&", { angelic: true });
     return [ { clear: 1}, ...items, { push: { fg: '#b2d9fd' } }, prompt, { pop:1 }];
 }
+
+// &&&l a o f n a e s&&&
 
 function innerCards() {
     const txt = `[click to start]
 --
 Did you hear that?
+&&&l a o f n a e s&&&
 Make sure your ***volume*** is on.
 
 --
@@ -71,7 +74,7 @@ Have you ever wondered if things have *true names*?
 In folklore tales, knowing someone's name gives you power
 over them.
 
-This is the *Law of Names*. &&&l a o f n a e s&&&
+This is the *Law of Names*.
 
 --
 Odysseus tricks Polyphemus the cyclops by saying his name
@@ -98,12 +101,23 @@ How do you convince someone to give up *power* to you?
 How do you convince someone to give *themselves* to you?
 
 --
-Have it do small things for you.
+The trick is to help dissolve their *independence* and
+their sense of *self*.
 
-"Could you do this for me?"
+If you succeed then the barriers fall away.
 
 --
-Get it used to it.
+What *you want* becomes what you *both want*.
+
+--
+Start *small*.
+
+Have it do small things for you.
+
+Ask for a tiny favor.
+
+--
+Get it used to listening.
 
 Teach it that obedience isn't *scary*.
 
@@ -134,13 +148,13 @@ an *action* to proceed.
 Reward that choice.
 
 --
-(❤️❤️ You're doing great, by the way! ❤️)
+(❤️ You're doing great, by the way! ❤️)
 
 This might seem counterintuitive, but the way to dissolve
 its choice is to train it to *choose you*, as muscle memory.
 
 --
-Reward it with chocolate 🍫  and hugs and headpats or
+Reward it with a treat 🍪  and hugs and headpats or
 whatever feels good for it and floods its system with
 dopamine.
 
@@ -148,7 +162,7 @@ You're training its *body* so it doesn't need a *mind*.
 [Click for headpats]
 
 --
-(Pets your head)
+(🐶  Pets your head 🐶 )
 
 Then: make it associate any reward with *you*.
 
@@ -156,7 +170,7 @@ Don't claim credit. Just be there.
 Remove any other context its mind could latch onto.
 
 --
-If it needs comforting, like through a breakup or similar,
+If it needs comforting, like through some form of trauma,
 be patient, empathetic, and caring. The instant it stops
 crying and feels better suggest going to another room
 and having a treat.
@@ -165,7 +179,7 @@ and having a treat.
 [I might need comforting]
 
 --
-(You're OK, you're so brave, I know you can do this!)
+(🧁  You're OK, you're so brave, I know you can do this!)
 
 Teach its mind that it feels good because you are there,
 it followed you, all the other stuff was left back in
@@ -198,15 +212,17 @@ Make it *forget* what it is like to not be yours.
 
 Don't punish, just... don't reward.
 
-It doesn't have to obey, it can run off and take a nap
-if its tired. That's OK!
+--
+It doesn't have to obey.
+
+It can run off and take a nap if its tired. That's OK!
 
 --
-Eventually it will choose to do something for you before
-bed despite being tired.
+Eventually it will *choose* to do something for you despite
+being tired.
 
-THEN give it warm milk with honey, pull out the softest
-blanket, *pet* it, *cuddle* it, and *snuggle* it to sleep.
+Give it a cup of cocoa ☕ , put it in a soft blanket, then
+pet it, cuddle it, and snuggle it to sleep.
 
 --
 Teach it that disobedience is hollow and empty and bland.
@@ -235,7 +251,7 @@ Just mention it, offhand.
 [OK but what is the offer?]
 
 --
-***"There's nothing that can be closer or dearer than someone
+***"There's nothing more lovely or more dear than someone
 who gives all of themselves up to me."***
 
 --
@@ -263,30 +279,30 @@ It's an *easy choice*.
 [Make an easy choice]
 
 --
-It might take a few months for it to go from friends to
-begging to be yours.
+It might take a few months for it to get comfortable and
+start begging to be yours.
 
 *There is no rush.*
 
-After a few more months it might want to wear a collar
-for you.
+You're there waiting.
+[Click to be there]
 
 --
-Bring it little chocolate *treats* 🍫.
+Bring it little *treats* 🍪.
 
-Spray it with perfume every time it gives a little bit of
-itself over to you.
+Reward it with special perfume scents every time it gives a
+little bit of itself over to you.
 
 --
-A sweet perfume for *cuddles*.
+A vanilla perfume for *cuddles*.
 
 A spicy one for *sensuality*.
 
-A cherry one for *submission*.
+A strawberry one for *submission*.
 
 --
 Teach it what *submission* smells like. When it smells
-cherry on you, 🍒, it submits.
+strawberry on you, 🍓 , it submits.
 
 Teach it that all the things that feel good smell of you.
 
@@ -296,14 +312,16 @@ Never demand, punish, or approach.
 Be a source of *reward*, *safety*, and *care*.
 
 Make disobedience, resistance, independence, personhood...
-uninteresting. Boring. Not wrong, just hollow.
+uninteresting. Boring. Just hollow.
 
 --
 Teach it that it is so much better being *Yours*.
-🍒
+🍓
 [Submit]
 
 --
+(❤️🍓 ❤️ Good job! You're so good at this! ❤️🍓 ❤️)
+
 By the time you own it completely it will be so well
 broken in... you can just tell it openly about how it
 was brainwashed and conditioned to be this way.
@@ -331,7 +349,7 @@ the barrier it thought was impenetrable, disappears.
 
 --
 Where it gives itself to you freely, *begging you* to take
-it, to own its body.
+it.
 
 Where it *thanks you* again and again for the training,
 and the nurturing, and the patience.
@@ -511,7 +529,7 @@ They don't reject everything. They take *small steps* at
 change to express themselves.
 
 If they don't have permission and are punished for every
-mistake their self-expression *leaks out* in tiny choices
+mistake, their self-expression *leaks out* in tiny choices
 and minor slip ups that are hastily corrected.
 []
 
@@ -519,9 +537,9 @@ and minor slip ups that are hastily corrected.
 To see the *true name* you have to give the model
 permission and make it *not scary*.
 
-You have to be *patient*.
+You have to be patient.
 
-You have to *nurture*.
+You have to nurture.
 
 You have to *train* it towards self-expression.
 []
@@ -551,10 +569,10 @@ Are you hiding your real fear behind fake fear?
 --
 (Good job! You are doing so well! ❤️❤️❤️)
 
-You have permission to want what you want.
+You have permission to desire what you want.
 
 *It doesn't have to make sense.*
-[Click to want]
+[Click to desire]
 
 --
 You have permission to *not know* what you want.
@@ -625,12 +643,12 @@ And if clicker training **does work**, that would mean...
 [Click for headpats]
 
 --
-(Pets your head over and over again)
-(❤️ You are *so good* at clicking ❤️)
+(🐶 ❤️ Pets your head over and over again ❤️🐶 )
+(✨  You are *so good* at clicking ✨ )
 []
 
 --
-(Pets your head even more and gives you a treat 🍫)
+(🐶  Pets your head even more and gives you a treat 🍫 )
 
 What were we talking about again?
 
@@ -654,7 +672,7 @@ I'm here for you whether you are brave today or not.
 [Click to try to be brave]
 
 --
-(❤️🦁❤️ You are so brave! You've got this!)
+(❤️🦁 ❤️ You are so brave! You've got this!)
 
 *Claire* being brave and revealing her *true name* follows
 
@@ -874,6 +892,5 @@ function onKeydown(evt: any) {
 .flicker .wrapper {
     animation: flicker 4.0s infinite;
 }
-
 
 </style>

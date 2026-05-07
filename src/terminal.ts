@@ -22,13 +22,22 @@ type MixedText = (string | { push: Attributes } | { pop: any } | { clear: any })
 /// Update a span DOM element representing one character cell of framebuffer
 function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
     c.style = '';
+    c.className = '';
     if (attr) {
         if (attr.fg !== undefined) c.style.color = attr.fg;
         if (attr.bg !== undefined) c.style.backgroundColor = attr.bg;
         if (attr.bold) c.style.fontWeight = 'bold';
         if (attr.underline) c.style.textDecoration = 'underline';
         if (attr.italic) c.style.fontStyle = 'italic';
-        if (attr.angelic) c.style.fontFamily = 'enochian';
+        if (attr.angelic) {
+            c.style.fontFamily = 'enochian';
+            c.classList.add('angelic');
+            c.style.animationDelay = `-${Math.random(10)}s`;
+            c.style.animationDuration = `${3.6 + Math.random(4)}s`;
+        }
+        if (!/\d/g.test(txt)) {
+            c.style.fontVariantEmoji = 'emoji';
+        }
     }
     c.textContent = txt;
 }
