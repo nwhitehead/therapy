@@ -2,7 +2,7 @@
 
 import { ref, useTemplateRef, onMounted, nextTick } from 'vue';
 import Typewriter from './typewriter.vue';
-import { position } from './useStore.ts';
+import { position, subposition } from './useStore.ts';
 
 // Music ideas:
 // Yet fragments of something greater
@@ -42,6 +42,27 @@ function splitDelim(txt, delim, push) {
     return result;
 }
 
+function splitDelimSingle(txt, delim, push) {
+    let result = [];
+    if (typeof txt === 'string') {
+        txt = [ txt ];
+    }
+    for (const item of txt) {
+        if (typeof item === 'string') {
+            const m = item.split(delim);
+            for (let i = 0; i < m.length; i++) {
+                result.push(m[i]);
+                if (i < m.length - 1) {
+                    result.push( { push });
+                }
+            }
+        } else {
+            result.push(item);
+        }
+    }
+    return result;
+}
+
 function f(item) {
     let prompt = '\nClick to continue';
     // First look for alternate prompt
@@ -55,6 +76,7 @@ function f(item) {
     items = splitDelim(items, "**", { italic: true });
     items = splitDelim(items, "*", { italic: true, fg: '#b785c0' });
     items = splitDelim(items, "&&&", { angelic: true });
+    items = splitDelimSingle(items, "%%%", { pause:1 });
     return [ { clear: 1}, ...items, { push: { fg: '#b2d9fd' } }, prompt, { pop:1 }];
 }
 
@@ -68,7 +90,7 @@ Did you hear that?
 Make sure your ***volume*** is on.
 
 --
-Have you ever wondered if things have *true names*?
+Have you ever wondered%%% if things have %%%*true names*?
 
 --
 In folklore tales, knowing someone's name gives you power
@@ -916,6 +938,8 @@ const cards: any = [
     [ { clear: 1} ],
 ];
 
+console.log(cards);
+
 const speedup = 1;
 const glitchTMin = 5000 / speedup;
 const glitchTMax = 25000 / speedup;
@@ -985,6 +1009,7 @@ function onKeydown(evt: any) {
         if (position.value > cards.length - 1) {
             position.value = cards.length - 1;
         }
+        subposition.value = 0;
         changed = true;
     }
     if (evt.key === 'ArrowLeft') {
@@ -992,6 +1017,7 @@ function onKeydown(evt: any) {
         if (position.value < 0) {
             position.value = 0;
         }
+        subposition.value = 0;
         changed = true;
     }
     if (evt.key === 'r') {
@@ -1006,12 +1032,14 @@ function onKeydown(evt: any) {
     }
     if (changed) {
         data.value = cards[position.value];
-        console.log(`Position = ${position.value}`);
+        console.log(`Position = ${position.value}, ${subposition.value}`);
     }
 }
 
 onMounted(() => {
     console.log('mounted');
+    window.removeEventListener('click', click);
+    window.removeEventListener('keydown', onKeydown);
     window.addEventListener('click', click);
     window.addEventListener('keydown', onKeydown);
 });
@@ -1023,7 +1051,7 @@ onMounted(() => {
         <audio ref="clickSfx" src="/click.opus"></audio>
         <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
         <div class="wrapper">
-            <Typewriter :data=data @ready="onReady">
+            <Typewriter :data=data :subposition=subposition @ready="onReady">
             </Typewriter>
         </div>
     </div>
