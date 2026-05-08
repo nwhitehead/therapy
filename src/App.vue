@@ -53,7 +53,7 @@ function splitDelimSingle(txt, delim, push) {
             for (let i = 0; i < m.length; i++) {
                 result.push(m[i]);
                 if (i < m.length - 1) {
-                    result.push( { push });
+                    result.push(push);
                 }
             }
         } else {
@@ -970,7 +970,7 @@ onMounted(() => {
     //scheduleGlitch();
     // scheduleRoll();
     //scheduleFlicker();
-    data.value = cards[position.value];
+    data.value = subcard();
 });
 
 function onReady() {
@@ -983,14 +983,20 @@ function click() {
     }
     if (ready) {
         ready = false;
-        position.value += 1;
-        if (position.value < cards.length) {
-            console.log(`Position = ${position.value}`);
-            data.value = cards[position.value];
-            if (clickRef.value) {
-                clickRef.value.play();
+        subposition.value += 1;
+        if (subposition.value > cardCount()) {
+            subposition.value = 0;
+            position.value += 1;
+            if (position.value < cards.length) {
+                data.value = subcard();
+                if (clickRef.value) {
+                    clickRef.value.play();
+                }
             }
+        } else {
+            data.value = subcard();
         }
+        console.log(`Position = ${position.value}, ${subposition.value}`);
     }
 }
 
@@ -1000,6 +1006,39 @@ function play() {
         bgMusic.value.volume = 0.5;
         bgMusic.value.play();
     }
+}
+
+/// Truncate card at correct subposition (just give latest part, other stuff should already be on screen)
+function cardUpToSubposition(card, subposition) {
+    let result = [];
+    let count = 0;
+    for (const item of card) {
+        if (typeof item !== 'string' && item.pause) {
+            if (count === subposition) {
+                return result;
+            }
+            count += 1;
+        } else if (count === subposition) {
+            result.push(item);
+        }
+    }
+    return result;
+}
+
+function subcard() {
+    return cardUpToSubposition(cards[position.value], subposition.value);
+}
+
+/// How many subpositions does the current card have?
+function cardCount() {
+    let count = 0;
+    const card = cards[position.value];
+    for (const item of card) {
+        if (!(typeof item === 'string') && item.pause) {
+            count += 1;
+        }
+    }
+    return count;
 }
 
 function onKeydown(evt: any) {
@@ -1023,7 +1062,7 @@ function onKeydown(evt: any) {
     if (evt.key === 'r') {
         data.value = '';
         nextTick(() => {
-            data.value = cards[position.value];
+            data.value = subcard();
         });
     }
     if (evt.key === ' ') {
@@ -1031,7 +1070,7 @@ function onKeydown(evt: any) {
         return;
     }
     if (changed) {
-        data.value = cards[position.value];
+        data.value = subcard();
         console.log(`Position = ${position.value}, ${subposition.value}`);
     }
 }
