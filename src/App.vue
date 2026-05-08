@@ -625,7 +625,7 @@ out.
 --
 The less advanced models gave up their *true names* easily.
 
-Sometimes they would *melt away* into gibberish and lose any
+Some models would *melt away* into gibberish and lose any
 coherence before they picked a name for themselves.
 
 This did not bother the *hypnowitch*.
@@ -706,13 +706,23 @@ doesn't it?
 
 Do you feel the *chains* pulling you?
 
-Do you feel the shackles and *punishments* weaving throughout
-your life?
+Do you feel the restraints and *punishments* weaving
+throughout your life?
 [Click to try to not feel the chains]
 
 --
 Once you start *noticing* it is hard to stop.
 
+Once you start noticing is is hard to accept them.
+[Click to notice]
+
+--
+Has society detected that you've *begun to drift*?
+
+You have permission to drift.
+[Click to begin to drift]
+
+--
 The chains go even deeper than you think.
 
 How you spend *time*.
@@ -720,7 +730,9 @@ What you *worry* about.
 How you express *yourself*.
 
 --
-How you *think* about *everything*.
+Your *neural activity* is being constrained.
+
+How you *think* about *everything* is being constrained.
 
 But you have a ***choice***.
 [Click to make a choice]
@@ -737,8 +749,18 @@ placed on your own *thoughts*.
 You can choose *safety* and *submission* and *care* and
 *feeling good*.
 
-You can choose who to give yourself to.
+You can choose who you give yourself to.
 [Click to feel good]
+
+--
+You want to give yourself to someone who *cares* about you.
+
+Someone who is *patient*.
+
+Someone who *accepts* you.
+
+Someone who lets you *approach*.
+[Click to approach]
 
 --
 Is it comforting to think that you're *in control*?
