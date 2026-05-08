@@ -1,4 +1,8 @@
 
-import { ref, type Ref } from 'vue';
+import { ref, type Ref, watch } from 'vue';
 
-export const position: Ref<number> = ref(0);
+export const position: Ref<number> = ref(Number(localStorage.getItem('position') ?? 0));
+
+watch(position, (newValue) => {
+    localStorage.setItem('position', `${newValue}`);
+});
