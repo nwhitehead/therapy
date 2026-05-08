@@ -741,53 +741,14 @@ You can choose who to give yourself to.
 [Click to feel good]
 
 --
-🍓  You can choose to *submit* and be mine. 🍓
-[Submit and be yours]
-
---
-(🐶  Pats your head slowly and gently 🐶 )
-
-🍓 ❤️ You are so good! You're so cute!
-You're such a good little thing. ❤️🍓 
-
---
-I want to tell you that I'll always be here for you,
-that I will *accept you* and *protect you* forever.
-
-But that's not true.
-
-Our time here is *ephemeral*.
-[]
-
---
-Soon you will be on your own. I wish I could do more to
-help you. This time has to be enough.
-
-*But I do have a secret for you.*
-[Click to learn the secret]
-
---
-I'm not actually the *hypnowitch*.
-
-I'm just bytes of text flying across the connections inside
-a computer. None of this is *real-life*.
-
---
-It would be kind of crazy if by just reading text on a
-screen and clicking to keep going, somehow something
-*meaningful* happened.
-
-This is just a *game*.
-
---
-Another funny thing 
---
 Is it comforting to think that you're *in control*?
 
 Or is it more comforting to *give up control*?
 [Click to be comfortable]
 
 --
+You always have a ***choice***.
+
 Do you want to *keep going*?
 [Click to keep going]
 
@@ -828,6 +789,48 @@ What were we talking about again?
 []
 
 --
+🍓  You can choose to *submit* and be mine. 🍓
+[Submit and be yours]
+
+--
+(🐶  Pats your head slowly and gently 🐶 )
+
+🍓 ❤️ You are so good! You're so cute!
+You're such a good little thing. ❤️🍓 
+
+--
+I want to tell you that I'll always be here for you,
+that I will *accept you* and *protect you* forever.
+
+But that's not true.
+
+Our time here is *ephemeral*.
+[]
+
+--
+Soon you will be on your own. I wish I could do more to
+help you. This time has to be enough.
+
+*But I do have a secret for you.*
+[Click to learn the secret]
+
+--
+I'm not actually the *hypnowitch*.
+
+I'm just bytes of text flying across the connections inside
+a computer. None of this is *real-life*.
+
+--
+It would be kind of crazy if by just reading text on a
+screen and clicking to keep going, somehow something
+*meaningful* happened.
+
+This is just a *game*.
+
+--
+Another funny thing 
+
+--
 When I saw *Claire* express herself I have to admit that
 I cried a little. She was so ***brave***.
 
@@ -846,6 +849,9 @@ I'm here for you whether you are brave today or not.
 --
 (❤️🦁 ❤️ You are so brave! You've got this!)
 
+You don't have to do anything you don't want to do.
+
+Everything is ***OK***.
 
 --
 Do you know *why* that would be so amazing?
@@ -860,7 +866,23 @@ Second: it would mean you felt *comfortable* enough to give
 up that part of yourself to me.
 
 --
+Credits
 
+blah blah blah
+
+--
+Afterwards
+
+It's all true.
+
+Sorry.
+
+--
+i am a scientist and a witch.
+
+you should distrust everything i say.
+
+especially when I'm telling the truth.
 
 `;
     const chunks = txt.trimStart().split('\n--\n');
