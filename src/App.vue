@@ -18,6 +18,9 @@ let playing = false;
 const data = ref([]);
 let ready = false;
 
+// How long after text is ready until click allowed
+const INITIAL_DELAY: number = 200;
+
 function splitDelim(txt, delim, push) {
     let result = [];
     if (typeof txt === 'string') {
@@ -1146,7 +1149,9 @@ function scheduleFlicker() {
 }
 
 function onReady() {
-    ready = true;
+    setTimeout(() => {
+        ready = true;
+    }, INITIAL_DELAY);
 }
 
 function click() {
