@@ -32,7 +32,7 @@ function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
         if (attr.angelic) {
             c.style.fontFamily = 'enochian';
             c.classList.add('angelic');
-            c.style.animationDelay = `-${Math.random(10)}s`;
+            c.style.animationDelay = `-${Math.random(100)}s`;
             c.style.animationDuration = `${3.6 + Math.random(4)}s`;
         }
         if (!/\d/g.test(txt)) {
