@@ -1100,6 +1100,13 @@ especially when I'm telling the truth.
 You're such a good little thing. ❤️🍓 
 
 --
+You like *clicking*, don't you?
+%%%.%%%.%%%.%%%keep clicking%%%.%%%.%%%.%%%just a bit more%%%.%%%.%%%.%%%.%%%.%%%almost there%%%.%%%.%%%.%%%.%%%.%%%.
+you're a bit desperate, aren't you?%%%.%%%.%%%.%%%.
+you're doing SO GOOD%%%.%%%.%%%.%%%.%%%
+
+--
+🍓 ❤️ 🍓 ❤️ 🍓 ❤️ 🍓 ❤️ 🍓 ❤️ 
 `;
     const chunks = txt.trimStart().split('\n--\n');
     return chunks.map((x: any) => f(x));
@@ -1231,7 +1238,9 @@ function onKeydown(evt: any) {
         });
     }
     if (evt.key === ' ') {
-        click();
+        if (!evt.repeat) {
+            click();
+        }
         return;
     }
     if (changed) {
