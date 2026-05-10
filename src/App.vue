@@ -11,6 +11,12 @@ import { position, subposition } from './useStore.ts';
 
 // random notes
 /*
+I. Introduction
+II. Convincing
+III. Personas
+IV. Chains
+V. Lying
+
 there's something hypnotic about a blinking cursor isn't there?
 it slowly pulses, glowing and inviting, waiting
 tantalizing with possibility
