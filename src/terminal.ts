@@ -155,6 +155,14 @@ export class Terminal {
         const cell = this.getCell(r, c);
         cell.prepend(this.cursorElem);
     }
+    /// Hide cursor (make invisible until shown again)
+    hideCursor() {
+        this.cursorElem.style.display = "none";
+    }
+    /// Show cursor
+    showCursor() {
+        this.cursorElem.style.display = "inline-block";
+    }
     /// update contents of single cell (removes attributes if none given)
     updateCell(r: number, c: number, txt: string, attr?: Attributes) {
         const cell = this.getCell(r, c);
@@ -301,15 +309,21 @@ export class Terminal {
             for (const item of msg) {
                 signal?.throwIfAborted();
                 if (typeof item === 'string') {
-                    await this.writeAsync(item, signal);
+                    if (item !== "") {
+                        this.showCursor();
+                        await this.writeAsync(item, signal);
+                    }
                 } else if (typeof item === 'object') {
                     if (item.push !== undefined) {
+                        this.showCursor();
                         this.pushAttr(item.push);
                     } else if (item.pop !== undefined) {
+                        this.showCursor();
                         this.popAttr();
                     } else if (item.clear !== undefined) {
                         this.clear();
                     } else if (item.delay !== undefined) {
+                        this.hideCursor();
                         await delay(item.delay * 1000);
                     } else {
                         throw new Error("Unknown array item");
