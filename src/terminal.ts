@@ -43,10 +43,13 @@ function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
         if (attr.mirror) {
             c.classList.add('mirror');
             const dupElem = c.cloneNode(true);
+            dupElem.classList.remove('mirror');
+            dupElem.classList.add('mirror-mirror');
             dupElem.style.position = "relative";
             dupElem.style.left = "-0.605em";
             dupElem.style.top = "1.0em";
             dupElem.style.transform = "scaleY(-1)";
+            dupElem.style.opacity = 0.5;
             c.appendChild(dupElem);
         }
     }

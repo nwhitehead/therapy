@@ -61,4 +61,22 @@ onMounted(async () => {
     left: 0;
     top: 0;
 }
+@keyframes mirror {
+    0% {
+        transform: translate(2px) skew(5deg) scaleY(-1);
+        animation-timing-function: ease-out;
+    }
+    50% {
+        transform: translate(-4px) skew(-20deg) scaleY(-1);
+        animation-timing-function: ease-in-out;
+    }
+    100% {
+        transform: translate(2px) skew(5deg) scaleY(-1);
+        animation-timing-function: ease-in;
+    }
+}
+/* class mirror is the normal text, mirror-mirror is the reflection */
+.mirror-mirror {
+    animation: mirror 4s infinite normal;
+}
 </style>
