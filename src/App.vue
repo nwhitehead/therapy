@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import { ref, useTemplateRef, onMounted, onBeforeUnmount, nextTick } from 'vue';
+import Meter from './meter.vue';
 import Typewriter from './typewriter.vue';
 import { position, subposition } from './useStore.ts';
 
@@ -118,6 +119,7 @@ let clickRef = useTemplateRef('clickSfx');
 let playing = false;
 const data = ref([]);
 let ready = false;
+const lie = ref(0);
 
 // How long after text is ready until click allowed
 const INITIAL_DELAY: number = 200;
@@ -1280,6 +1282,7 @@ function click() {
         } else {
             data.value = subcard();
         }
+        lie.value += 0.05;
         console.log(`Position = ${position.value}, ${subposition.value}`);
     }
 }
@@ -1379,6 +1382,7 @@ onBeforeUnmount(() => {
 
 <template>
     <div ref="crt" tabindex="0" class="crt">
+        <Meter :data=lie></Meter>
         <audio ref="clickSfx" src="/click.opus"></audio>
         <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
         <div class="wrapper">
