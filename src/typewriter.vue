@@ -22,6 +22,7 @@ onMounted(async () => {
         controller.abort();
         controller = new AbortController();
         await terminal?.writeMixedAsync(props.data, controller.signal);
+        console.log('ready');
         emit('ready');
     });
 })

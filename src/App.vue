@@ -180,6 +180,7 @@ function f(item) {
     items = splitDelim(items, "**", { italic: true });
     items = splitDelim(items, "*", { italic: true, fg: '#b785c0' });
     items = splitDelim(items, "&&&", { angelic: true });
+    items = splitDelimSingle(items, "@", { delay:1 });
     items = splitDelimSingle(items, "%%%", { pause:1 });
     return [ { clear: 1}, ...items, { push: { fg: '#b2d9fd' } }, prompt, { pop:1 }];
 }
@@ -241,7 +242,7 @@ What *you want* becomes what you *both want*.
 
 --
 II. Convincing
-
+@@@
 --
 Start *small*.
 

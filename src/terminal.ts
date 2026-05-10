@@ -309,6 +309,8 @@ export class Terminal {
                         this.popAttr();
                     } else if (item.clear !== undefined) {
                         this.clear();
+                    } else if (item.delay !== undefined) {
+                        await delay(item.delay * 1000);
                     } else {
                         throw new Error("Unknown array item");
                     }
