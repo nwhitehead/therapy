@@ -15,6 +15,7 @@ type Attributes = {
     underline?: boolean;
     italic?: boolean;
     angelic?: boolean;
+    mirror?: boolean;
 }
 
 type MixedText = (string | { push: Attributes } | { pop: any } | { clear: any })[];
@@ -23,6 +24,7 @@ type MixedText = (string | { push: Attributes } | { pop: any } | { clear: any })
 function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
     c.style = '';
     c.className = '';
+    c.textContent = txt;
     if (attr) {
         if (attr.fg !== undefined) c.style.color = attr.fg;
         if (attr.bg !== undefined) c.style.backgroundColor = attr.bg;
@@ -38,21 +40,30 @@ function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
         if (!/\d/g.test(txt)) {
             c.style.fontVariantEmoji = 'emoji';
         }
+        if (attr.mirror) {
+            c.classList.add('mirror');
+            const dupElem = c.cloneNode(true);
+            dupElem.style.position = "relative";
+            dupElem.style.left = "-0.605em";
+            dupElem.style.top = "1.0em";
+            dupElem.style.transform = "scaleY(-1)";
+            c.appendChild(dupElem);
+        }
     }
-    c.textContent = txt;
 }
 
 /// Update a span DOM element representing one character cell of framebuffer
 function getCellData(c: HTMLElement): [string, Attributes] {
-    const txt = c.textContent;
-    let attr: Attributes = {};
-    if (c.style.color !== '') attr.fg = c.style.color;
-    if (c.style.backgroundColor !== '') attr.bg = c.style.backgroundColor;
-    if (c.style.fontWeight === 'bold') attr.bold = true;
-    if (c.style.textDecoration === 'underline') attr.underline = true;
-    if (c.style.fontStyle === 'italic') attr.italic = true;
-    if (c.style.fontFamily === 'enochian') attr.angelic = true;
-    return [txt, attr];
+    // const txt = c.textContent;
+    // let attr: Attributes = {};
+    // if (c.style.color !== '') attr.fg = c.style.color;
+    // if (c.style.backgroundColor !== '') attr.bg = c.style.backgroundColor;
+    // if (c.style.fontWeight === 'bold') attr.bold = true;
+    // if (c.style.textDecoration === 'underline') attr.underline = true;
+    // if (c.style.fontStyle === 'italic') attr.italic = true;
+    // if (c.style.fontFamily === 'enochian') attr.angelic = true;
+    // return [txt, attr];
+    throw new Error("getCellData needs work");
 }
 
 // delay for specified number of milliseconds
@@ -140,6 +151,7 @@ export class Terminal {
             }
         }
         this.updateCursorElem();
+        this.showCursor();
     }
     /// get single cell at specified position or throw error
     getCell(r: number, c: number): HTMLElement {
@@ -171,15 +183,16 @@ export class Terminal {
     /// scroll screen up one line, making bottom line blank (do not move cursor)
     // blank line has current attr but no contents
     scrollUp() {
-        for (let row = 0; row < this.rows - 1; row++) {
-            for (let col = 0; col < this.cols; col++) {
-                let [txt, attr] = getCellData(this.getCell(row + 1, col));
-                this.updateCell(row, col, txt, attr);
-            }
-        }
-        for (let col = 0; col < this.cols; col++) {
-            this.updateCell(this.rows - 1, col, " ", this.attr);
-        }
+        throw new Error("scrollUp needs work");
+    //     for (let row = 0; row < this.rows - 1; row++) {
+    //         for (let col = 0; col < this.cols; col++) {
+    //             let [txt, attr] = getCellData(this.getCell(row + 1, col));
+    //             this.updateCell(row, col, txt, attr);
+    //         }
+    //     }
+    //     for (let col = 0; col < this.cols; col++) {
+    //         this.updateCell(this.rows - 1, col, " ", this.attr);
+    //     }
     }
     /// advance cursor position
     cursorNext() {

@@ -180,6 +180,7 @@ function f(item) {
     items = splitDelim(items, "**", { italic: true });
     items = splitDelim(items, "*", { italic: true, fg: '#b785c0' });
     items = splitDelim(items, "&&&", { angelic: true });
+    items = splitDelim(items, "&-&", { mirror: true });
     items = splitDelimSingle(items, "@", { delay:1 });
     items = splitDelimSingle(items, "%%%", { pause:1 });
     return [ { clear: 1}, ...items, { push: { fg: '#b2d9fd' } }, prompt, { pop:1 }];
@@ -812,7 +813,7 @@ The *hypnowitch* wondered if GPT-5.5 was right.
 
 Maybe *true names* are a *statistical artifact*.
 %%%
-Just a ***mirror*** of the broken structures of society.@@@
+Just a ***&-&mirror&-&*** of the broken structures of society.@@@
 
 --
 IV. Chains
