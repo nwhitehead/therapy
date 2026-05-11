@@ -119,7 +119,9 @@ let clickRef = useTemplateRef('clickSfx');
 let playing = false;
 const data = ref([]);
 let ready = false;
-const lie = ref(0);
+const lie = ref(0.5);
+const noise = ref(0.8);
+const frequency = ref(2.0);
 
 // How long after text is ready until click allowed
 const INITIAL_DELAY: number = 200;
@@ -1288,7 +1290,6 @@ function click() {
         } else {
             data.value = subcard();
         }
-        lie.value += 0.05;
         console.log(`Position = ${position.value}, ${subposition.value}`);
     }
 }
@@ -1388,7 +1389,7 @@ onBeforeUnmount(() => {
 
 <template>
     <div ref="crt" tabindex="0" class="crt">
-        <Meter :data=lie></Meter>
+        <Meter :level=lie :noise=noise :frequency=frequency></Meter>
         <audio ref="clickSfx" src="/click.opus"></audio>
         <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
         <div class="wrapper">
