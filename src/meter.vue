@@ -21,6 +21,7 @@ async function newImg(src) {
 const frameWidth = 177;
 const frameHeight = 94;
 const frameCount = 61;
+const outputScale = 1.5;
 
 function clamp(x: number, lo: number, hi: number) {
     return Math.min(Math.max(x, lo), hi);
@@ -30,7 +31,7 @@ onMounted(async () => {
     const ctx = canvas.value?.getContext('2d');
     const img = await newImg(VUMeter);
     const noiseAmp = 0.8;
-    const noiseFreq = 8.0;
+    const noiseFreq = 5.0;
     function update(v: number, t: number) {
         ctx?.clearRect(0, 0, canvas.value?.width ?? 0, canvas.value?.height ?? 0);
         ctx?.fillRect(0, 0, frameWidth, frameHeight);
@@ -39,7 +40,7 @@ onMounted(async () => {
         // freq 0.3 1.0 3.0
         const x = 0.5 + perlin2(0.23, t * noiseFreq * 0.001) * noiseAmp;
         const frame = clamp(Math.floor(x * frameCount), 0, frameCount - 1);
-        ctx?.drawImage(img, 0, frameHeight * frame, frameWidth, frameHeight, 0, 0, frameWidth * 1.5, frameHeight * 1.5);
+        ctx?.drawImage(img, 0, frameHeight * frame, frameWidth, frameHeight, 0, 0, frameWidth * outputScale, frameHeight * outputScale);
     }
     update(props.data);
     function f(t) {
@@ -56,12 +57,26 @@ onMounted(async () => {
 </script>
 
 <template>
-    <canvas ref="canvas" width="400px" height="200px"></canvas>
+    <div class="container">
+        <div class="vstack">
+            <span>Lie Meter</span>
+            <canvas ref="canvas" :width="frameWidth * outputScale" :height="frameHeight * outputScale"></canvas>
+        </div>
+    </div>
 </template>
 
 <style>
-canvas {
+div.container {
     position: absolute;
     top: 50px;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+div.vstack {
+    display: flex;
+    flex-direction: column;
 }
 </style>

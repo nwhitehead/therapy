@@ -1127,6 +1127,12 @@ Our time here is *ephemeral*.
 []
 
 --
+***You are safe.***
+
+I will protect you.
+[]
+
+--
 Soon you will be on your own. I wish I could do more to
 help you. This time has to be enough.
 
