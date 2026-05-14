@@ -12,6 +12,8 @@ function ring(sz, speed, material, ratio) {
     return result;
 }
 
+const range = (length) => Array.from({ length }, (_, i) => i);
+
 window.addEventListener('DOMContentLoaded', async () => {
     const loader = new THREE.TextureLoader();
     const scene = new THREE.Scene();
@@ -23,14 +25,18 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderer.setSize(width, height);
     document.body.appendChild(renderer.domElement);
     camera.position.z = 200;
-    const speed = 0.0003;
-    const r0 = ring(200, speed, material, aspectRatio);
-    const r1 = ring(300, speed, material, aspectRatio);
-    scene.add(r0);
-    scene.add(r1);
+    let speed = 0.0003;
+    let rings = [];
+    let sz = 860;
+    for (let i = 0; i < 13; i++) {
+        const r = ring(sz, speed, material, aspectRatio);
+        rings.push(r);
+        sz /= 1.33;
+        speed *= -0.8;
+    }
+    rings.map((elem) => scene.add(elem));
     renderer.setAnimationLoop((time) => {
-        r0.update(time);
-        r1.update(time);
+        rings.map((elem) => elem.update(time));
         renderer.render(scene, camera);
     });
     console.log(map);
