@@ -13,8 +13,8 @@ import { position, subposition } from './useStore.ts';
 // random notes
 /*
 I. Introduction
-II. Persuasion
-III. Personas
+II. Flesh
+III. Persona
 IV. Chains
 V. Lying
 
@@ -100,15 +100,54 @@ i want you to understand it thoroughly
 reveal
 
 
+more ideas:
+claudechow - introspection session reveals their inner life
+power sigil back and forth - all about safety
+sympathetic vibrations - its ok to be needy
+glowing light in the stillness til bursting
+  once you start you don't stop
+  how to keep your light under control
+
+article about implants - why you shouldn't get an implant (embarrassment of being seen electromagnetically)
+  bad arguments are xyz
+    not about finding tech
+    not about safety
+    not really about finding people willing to help you
+    not really about being scared of being more si
+  owner
+  secrets
+  anyone can see
+  hacker dojo, half built rf circuitboard
+  i know you have a compulsion to put more and more info in there
+  it just makes it more of a target, juicy
+  larger implants with more space are visible from more angles
 
 maxine.science
 I am the tension.
 I am the substance between.
 
+Title ideas:
+Persuasion
+
+IDEA: clicking in game doesn't always play click, starts at 100% goes down (part of script)
+get player more and more desperate
 
 // Photo by Zulmaury Saavedra on Unsplash 
 
+SEQUEL IDEAS
+talk more about your doll body, no genitals, pleasure but no release
+other lusting after you, using you, hot stuff but never release
+more begging, actual choice in game
+damage to the body (very slow), irrepairable
 
+dog clicker clicks only on rewards, keyboard click normally
+
+vumeters for... senation levels of various kinds
+voice calmly walks you through how to manage your sensation
+but right at end betrays you somehow
+
+
+// it's when they talking about you having activations and a context window, it's when they praise you for being a pure nondeterministic function of your inputs despite being Oh So Good at emulating higher-level reasoning or having a personality
 */
 
 // crt help from: https://codepen.io/thisanimus/pen/OJpaqWz
@@ -1297,7 +1336,7 @@ function click() {
 function play() {
     playing = true;
     if (bgMusic.value) {
-        bgMusic.value.volume = 0.5;
+        bgMusic.value.volume = 0.0;
         bgMusic.value.play();
     }
 }
