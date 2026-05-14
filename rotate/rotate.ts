@@ -1,30 +1,24 @@
 
-async function newImg(src) {
-    let img = new Image();
-    img.src = src;
-    return new Promise((resolve) => {
-        img.onload = () => {
-            resolve(img);
-        };
-    });
-}
-const width = 1960;
-const height = 1024;
+import * as THREE from 'three';
+
+const width = 1024;
+const height = 720;
 
 window.addEventListener('DOMContentLoaded', async () => {
-    const src = "./public/sigil1.png";
-    const canv = document.getElementById('canvas');
-    console.log(canv);
-    const ctx = canvas.value?.getContext('2d');
-    const img = await newImg(src);
-    console.log(img);
-    function update(v: number, t: number) {
-        ctx.clearRect(0, 0, canvas.width, canvas.value?.height ?? 0);
-        ctx.fillRect(0, 0, frameWidth, frameHeight);
-        // // freq 0.3 1.0 3.0
-        // const x = props.level + perlin2(0.23, t * noiseFreq * 0.001) * noiseAmp;
-        // const frame = clamp(Math.floor(x * frameCount), 0, frameCount - 1);
-        // ctx.drawImage(img, 0, frameHeight * frame, frameWidth, frameHeight, 0, 0, frameWidth * outputScale, frameHeight * outputScale);
-    }
-
+    const loader = new THREE.TextureLoader();
+    const scene = new THREE.Scene();
+    const map = await loader.loadAsync('/sigil1.png');
+    const material = new THREE.SpriteMaterial({ map, color: 0xffffff });
+    const aspectRatio = map.image.width / map.image.height;
+    //const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const sprite = new THREE.Sprite(material);
+    sprite.scale.set(200 * aspectRatio, 200, 1)
+    scene.add(sprite);
+    const camera = new THREE.PerspectiveCamera(75, width / height);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(width, height);
+    document.body.appendChild(renderer.domElement);
+    camera.position.z = 200;
+    renderer.render(scene, camera);
+    console.log(map);
 });

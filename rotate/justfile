@@ -2,7 +2,7 @@ default:
     @just --list
 
 dev:
-    python -m http.server
+    npm run dev
 
 build:
-    npx tsc rotate.ts
+    npm run build
