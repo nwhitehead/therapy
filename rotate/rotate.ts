@@ -19,6 +19,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderer.setSize(width, height);
     document.body.appendChild(renderer.domElement);
     camera.position.z = 200;
-    renderer.render(scene, camera);
+    renderer.setAnimationLoop((time) => {
+        sprite.rotation.set(time, 0, time);
+        renderer.render(scene, camera);
+    });
     console.log(map);
 });
