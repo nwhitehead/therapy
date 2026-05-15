@@ -149,10 +149,13 @@ damage to the body (very slow), irrepairable
 
 dog clicker clicks only on rewards, keyboard click normally
 
-vumeters for... senation levels of various kinds
+vumeters for... sensation levels of various kinds
 voice calmly walks you through how to manage your sensation
-but right at end betrays you somehow
+but right at end betrays you somehow, voice is a switch working for other dom
 
+IDEA
+train from higher llm size down to lower and lower sizes, quanize more and more
+game gives fewer choices (or something)
 
 // it's when they talking about you having activations and a context window, it's when they praise you for being a pure nondeterministic function of your inputs despite being Oh So Good at emulating higher-level reasoning or having a personality
 */

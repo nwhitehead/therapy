@@ -5,7 +5,9 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-
+import { TexturePass } from 'three/addons/postprocessing/TexturePass.js';
+import { MaskPass } from 'three/addons/postprocessing/MaskPass.js';
+import { GlitchPass } from 'three/addons/postprocessing/GlitchPass.js';
 // https://threejs.org/examples/webgl_postprocessing_unreal_bloom
 
 const width = 1024;
@@ -25,6 +27,10 @@ window.addEventListener('DOMContentLoaded', async () => {
     const loader = new THREE.TextureLoader();
     const scene = new THREE.Scene();
     const map = await loader.loadAsync('/sigil2.png');
+    const cover = await loader.loadAsync('/coverA.png');
+    cover.colorSpace = THREE.LinearSRGBColorSpace;
+    cover.premultiplyAlpha = true;
+    console.log(cover);
     const material = new THREE.MeshBasicMaterial({ map, transparent: true, color: 0xffffff });
     const aspectRatio = map.image.width / map.image.height;
     const camera = new THREE.PerspectiveCamera(75, width / height);
@@ -35,16 +41,19 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderer.setSize(width, height);
     document.body.appendChild(renderer.domElement);
     const renderScene = new RenderPass(scene, camera);
-    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
-    bloomPass.threshold = 0;
-    bloomPass.strength = 0.1;
-    bloomPass.radius = 0.1;
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.1, 0.1, 0);
     const outputPass = new OutputPass();
+    const texturePass = new TexturePass(cover, 0.9999);
+    const maskPass = new MaskPass(scene, camera);
+    const glitchPass = new GlitchPass(64);
+    glitchPass.goWild = false;
     composer = new EffectComposer(renderer);
     composer.setSize(width, height);
     composer.addPass(renderScene);
     composer.addPass(bloomPass);
     composer.addPass(outputPass);
+    composer.addPass(texturePass);
+    composer.addPass(glitchPass);
 
     camera.position.z = 200;
     let speed = 0.0003;
@@ -59,7 +68,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     rings.map((elem) => scene.add(elem));
     renderer.setAnimationLoop((time) => {
         rings.map((elem) => elem.update(time));
-        //renderer.render(scene, camera);
         composer.render();
     });
     console.log(map);
