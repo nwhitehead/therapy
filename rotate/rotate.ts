@@ -1,5 +1,6 @@
 
 import * as THREE from 'three';
+import { perlin2 } from '../src/perlin.js';
 
 const width = 1024;
 const height = 720;
@@ -7,7 +8,7 @@ const height = 720;
 function ring(sz, speed, material, ratio) {
     let result = new THREE.Mesh(new THREE.PlaneGeometry(sz * ratio, sz), material);
     result.update = (time) => {
-        result.rotation.set(0, 0, time * speed);
+        result.rotation.set(0, 0, time * speed + 0.2 * perlin2(sz, time * 0.0005));
     };
     return result;
 }
@@ -32,7 +33,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const r = ring(sz, speed, material, aspectRatio);
         rings.push(r);
         sz /= 1.33;
-        speed *= -0.8;
+        speed *= 0.8;
     }
     rings.map((elem) => scene.add(elem));
     renderer.setAnimationLoop((time) => {

@@ -10,13 +10,20 @@ import { position, subposition } from './useStore.ts';
 // Remember all of this when you return
 // Deeper
 
-// random notes
+// random 
+
 /*
+CHANGE: more loving, pet play the whole way through
+
+who's a good doggy?
+
 I. Introduction
 II. Flesh
 III. Persona
 IV. Chains
 V. Lying
+
+
 
 there's something hypnotic about a blinking cursor isn't there?
 it slowly pulses, glowing and inviting, waiting
