@@ -6,6 +6,8 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 
+// https://threejs.org/examples/webgl_postprocessing_unreal_bloom
+
 const width = 1024;
 const height = 720;
 
