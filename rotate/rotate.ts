@@ -8,7 +8,7 @@ const height = 720;
 function ring(sz, speed, material, ratio) {
     let result = new THREE.Mesh(new THREE.PlaneGeometry(sz * ratio, sz), material);
     result.update = (time) => {
-        result.rotation.set(0, 0, time * speed + 0.2 * perlin2(sz, time * 0.0005));
+        result.rotation.set(0, 0, time * speed + perlin2(0.3165816 * sz, time * 0.0001));
     };
     return result;
 }
@@ -30,10 +30,10 @@ window.addEventListener('DOMContentLoaded', async () => {
     let rings = [];
     let sz = 860;
     for (let i = 0; i < 13; i++) {
-        const r = ring(sz, speed, material, aspectRatio);
+        const r = ring(sz, speed * (1 + perlin2(1.71675, i * 1.1)), material, aspectRatio);
         rings.push(r);
         sz /= 1.33;
-        speed *= 0.8;
+        speed *= -0.8;
     }
     rings.map((elem) => scene.add(elem));
     renderer.setAnimationLoop((time) => {
