@@ -9,6 +9,7 @@ const props = defineProps(['data']);
 let container = useTemplateRef('container');
 let terminal: Terminal | null = null;
 let controller: AbortController = new AbortController();
+let clickerRef = useTemplateRef('clickerSfx');
 
 onMounted(async () => {
     if (container.value === null) throw new Error("Typewriter container is null");
@@ -21,7 +22,12 @@ onMounted(async () => {
     watch(props, async () => {
         controller.abort();
         controller = new AbortController();
-        await terminal?.writeMixedAsync(props.data, controller.signal);
+        await terminal?.writeMixedAsync(props.data, controller.signal, async () => {
+            if (clickerRef.value) {
+                clickerRef.value.play();
+            }
+            console.log('Clicker clicked');
+        });
         console.log('ready');
         emit('ready');
     });
@@ -31,6 +37,7 @@ onMounted(async () => {
 
 <template>
     <div ref="container">
+        <audio ref="clickerSfx" src="/clicker.opus"></audio>
     </div>
 </template>
 

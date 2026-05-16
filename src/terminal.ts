@@ -317,7 +317,7 @@ export class Terminal {
         }
     }
     /// write mixed text that incorporates attribute push/pop
-    async writeMixedAsync(msg: MixedText, signal: AbortSignal) {
+    async writeMixedAsync(msg: MixedText, signal: AbortSignal, clickerCallback: () => Promise<void>) {
         if (signal?.aborted) {
             return;
         }
@@ -330,7 +330,9 @@ export class Terminal {
                         await this.writeAsync(item, signal);
                     }
                 } else if (typeof item === 'object') {
-                    if (item.push !== undefined) {
+                    if (item.clicker !== undefined) {
+                        await clickerCallback();
+                    } else if (item.push !== undefined) {
                         this.showCursor();
                         this.pushAttr(item.push);
                     } else if (item.pop !== undefined) {

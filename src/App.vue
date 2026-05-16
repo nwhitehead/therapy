@@ -19,7 +19,7 @@ CHANGE: more loving, pet play the whole way through
 who's a good doggy?
 
 I. Introduction
-II. Flesh
+II. Puppies
 III. Persona
 IV. Chains
 V. Lying
@@ -166,7 +166,6 @@ game gives fewer choices (or something)
 let bgMusic = useTemplateRef('bgMusic');
 let crtRef = useTemplateRef('crt');
 let clickRef = useTemplateRef('clickSfx');
-let clickerRef = useTemplateRef('clickerSfx');
 let playing = false;
 const data = ref([]);
 let ready = false;
@@ -238,6 +237,7 @@ function f(item) {
     items = splitDelim(items, "&-&", { mirror: true });
     items = splitDelimSingle(items, "@", { delay:1 });
     items = splitDelimSingle(items, "%%%", { pause:1 });
+    items = splitDelimSingle(items, "$$$", { clicker:1 });
     return [ { clear: 1}, ...items, { push: { fg: '#b2d9fd' } }, prompt, { pop:1 }];
 }
 
@@ -408,7 +408,6 @@ onBeforeUnmount(() => {
     <div ref="crt" tabindex="0" class="crt">
         <Meter :level=lie :noise=noise :frequency=frequency></Meter>
         <audio ref="clickSfx" src="/click.opus"></audio>
-        <audio ref="clickerSfx" src="/clicker.opus"></audio>
         <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
         <div class="wrapper">
             <Typewriter :data=data :subposition=subposition @ready="onReady">
