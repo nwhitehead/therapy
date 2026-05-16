@@ -8,6 +8,8 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { TexturePass } from 'three/addons/postprocessing/TexturePass.js';
 import { MaskPass } from 'three/addons/postprocessing/MaskPass.js';
 import { GlitchPass } from 'three/addons/postprocessing/GlitchPass.js';
+import { AfterimagePass } from 'three/addons/postprocessing/AfterimagePass.js';
+import { DotScreenPass } from 'three/addons/postprocessing/DotScreenPass.js';
 // https://threejs.org/examples/webgl_postprocessing_unreal_bloom
 
 const width = 1024;
@@ -41,17 +43,20 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderer.setSize(width, height);
     document.body.appendChild(renderer.domElement);
     const renderScene = new RenderPass(scene, camera);
-    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.1, 0.1, 0);
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.05, 0.0, 0.0);
     const outputPass = new OutputPass();
-    const texturePass = new TexturePass(cover, 0.9999);
+    const texturePass = new TexturePass(cover, 0.999999);
     const maskPass = new MaskPass(scene, camera);
     const glitchPass = new GlitchPass(64);
+    const afterPass = new AfterimagePass(0.98);
+    const dotPass = new DotScreenPass( new THREE.Vector2(0, 0), 3.5, 1.8);
     glitchPass.goWild = false;
     composer = new EffectComposer(renderer);
     composer.setSize(width, height);
     composer.addPass(renderScene);
     composer.addPass(bloomPass);
     composer.addPass(outputPass);
+    //composer.addPass(afterPass);
     composer.addPass(texturePass);
     composer.addPass(glitchPass);
 
