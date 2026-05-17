@@ -59,7 +59,7 @@ onUnmounted(() => {
 <template>
     <div class="container">
         <div class="vstack">
-            <span>Lie Meter</span>
+            <span>Truth Meter</span>
             <canvas ref="canvas" :width="frameWidth * outputScale" :height="frameHeight * outputScale"></canvas>
         </div>
     </div>
