@@ -69,7 +69,7 @@ div.container {
     top: 50px;
     display: flex;
     flex-direction: row;
-    width: 100vw;
+    /* width: 100vw; */
     justify-content: center;
     align-items: center;
 }

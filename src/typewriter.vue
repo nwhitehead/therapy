@@ -1,7 +1,8 @@
 <script setup lang="ts">
 
-import { useTemplateRef, onMounted, watch } from 'vue';
+import { useTemplateRef, onMounted, ref, watch } from 'vue';
 import { Terminal } from './terminal.ts';
+import Meter from './meter.vue';
 
 const emit = defineEmits(['ready']);
 const props = defineProps(['data']);
@@ -10,6 +11,10 @@ let container = useTemplateRef('container');
 let terminal: Terminal | null = null;
 let controller: AbortController = new AbortController();
 let clickerRef = useTemplateRef('clickerSfx');
+const lie = ref(0.5);
+const noise = ref(0.8);
+const frequency = ref(2.0);
+const meter = ref(false);
 
 onMounted(async () => {
     if (container.value === null) throw new Error("Typewriter container is null");
@@ -37,6 +42,7 @@ onMounted(async () => {
 
 <template>
     <div ref="container">
+        <Meter v-if="meter" :level="lie" :noise="noise" :frequency="frequency"></Meter>
         <audio ref="clickerSfx" src="/clicker.opus"></audio>
     </div>
 </template>

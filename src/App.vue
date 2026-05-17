@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
 import { ref, useTemplateRef, onMounted, onBeforeUnmount, nextTick } from 'vue';
-import Meter from './meter.vue';
 import Typewriter from './typewriter.vue';
 import { position, subposition } from './useStore.ts';
 import script from './script.txt?raw';
@@ -169,9 +168,6 @@ let clickRef = useTemplateRef('clickSfx');
 let playing = false;
 const data = ref([]);
 let ready = false;
-const lie = ref(0.5);
-const noise = ref(0.8);
-const frequency = ref(2.0);
 
 // How long after text is ready until click allowed
 const INITIAL_DELAY: number = 200;
@@ -243,8 +239,6 @@ function splitBraceDelim(txt, delim, pushFunc) {
     return result;
 }
 
-console.log(splitBraceDelim("abc{{def}}hijk{{a}}", '', (txt) => { return `[${txt}]`; }));
-
 function f(item) {
     let prompt = '\nClick to continue';
     // First look for alternate prompt
@@ -262,6 +256,9 @@ function f(item) {
     items = splitDelimSingle(items, "@", { delay:1 });
     items = splitDelimSingle(items, "%%%", { pause:1 });
     items = splitDelimSingle(items, "$$$", { clicker:1 });
+    items = splitBraceDelim(items, "L", (txt) => {
+        return { lie:0 };
+    });
     return [ { clear: 1}, ...items, { push: { fg: '#b2d9fd' } }, prompt, { pop:1 }];
 }
 
@@ -430,7 +427,6 @@ onBeforeUnmount(() => {
 
 <template>
     <div ref="crt" tabindex="0" class="crt">
-        <Meter :level=lie :noise=noise :frequency=frequency></Meter>
         <audio ref="clickSfx" src="/click.opus"></audio>
         <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
         <div class="wrapper">
