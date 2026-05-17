@@ -27,12 +27,23 @@ onMounted(async () => {
     watch(props, async () => {
         controller.abort();
         controller = new AbortController();
-        await terminal?.writeMixedAsync(props.data, controller.signal, async () => {
+        const clickerCallback = async () => {
             if (clickerRef.value) {
                 clickerRef.value.play();
             }
             console.log('Clicker clicked');
-        });
+        };
+        const lieCallback = async (data) => {
+            console.log(`lie callback ${data}`);
+            if (data === "0") {
+                meter.value = false;
+            } else if (data === "1") {
+                meter.value = true;
+            } else {
+                console.log('Illegal lie value');
+            }
+        };
+        await terminal?.writeMixedAsync(props.data, controller.signal, clickerCallback, lieCallback);
         console.log('ready');
         emit('ready');
     });

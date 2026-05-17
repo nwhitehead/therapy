@@ -257,7 +257,7 @@ function f(item) {
     items = splitDelimSingle(items, "%%%", { pause:1 });
     items = splitDelimSingle(items, "$$$", { clicker:1 });
     items = splitBraceDelim(items, "L", (txt) => {
-        return { lie:0 };
+        return { lie: txt };
     });
     return [ { clear: 1}, ...items, { push: { fg: '#b2d9fd' } }, prompt, { pop:1 }];
 }

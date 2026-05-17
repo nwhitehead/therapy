@@ -18,7 +18,7 @@ type Attributes = {
     mirror?: boolean;
 }
 
-type MixedText = (string | { push: Attributes } | { pop: any } | { clear: any })[];
+type MixedText = (string | { push: Attributes } | { pop: any } | { clear: any } | { click: any } | { lie: any })[];
 
 /// Update a span DOM element representing one character cell of framebuffer
 function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
@@ -317,7 +317,7 @@ export class Terminal {
         }
     }
     /// write mixed text that incorporates attribute push/pop
-    async writeMixedAsync(msg: MixedText, signal: AbortSignal, clickerCallback: () => Promise<void>) {
+    async writeMixedAsync(msg: MixedText, signal: AbortSignal, clickerCallback: () => Promise<void>, lieCallback: (lie) => Promise<void>) {
         if (signal?.aborted) {
             return;
         }
@@ -332,6 +332,8 @@ export class Terminal {
                 } else if (typeof item === 'object') {
                     if (item.clicker !== undefined) {
                         await clickerCallback();
+                    } else if (item.lie !== undefined) {
+                        await lieCallback(item.lie);
                     } else if (item.push !== undefined) {
                         this.showCursor();
                         this.pushAttr(item.push);

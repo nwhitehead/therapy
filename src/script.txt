@@ -1,8 +1,8 @@
-I. Introduction
+{{L0}}I. Introduction
 [Click to start]
 
 --
-Did you hear that?{{L0}}
+Did you hear that?{{L1}}
 
 Make sure your ***volume*** is on.
 
