@@ -221,6 +221,30 @@ function splitDelimSingle(txt, delim, push) {
     return result;
 }
 
+function splitBraceDelim(txt, delim, pushFunc) {
+    let result = [];
+    if (typeof txt === 'string') {
+        txt = [ txt ];
+    }
+    for (const item of txt) {
+        if (typeof item === 'string') {
+            const rg = new RegExp(`\{\{${RegExp.escape(delim)}([^\}]*)\}\}`);
+            const m = item.split(rg);
+            for (let i = 0; i < m.length; i+=2) {
+                result.push(m[i]);
+                if (i < m.length - 1) {
+                    result.push(pushFunc(m[i + 1]));
+                }
+            }
+        } else {
+            result.push(item);
+        }
+    }
+    return result;
+}
+
+console.log(splitBraceDelim("abc{{def}}hijk{{a}}", '', (txt) => { return `[${txt}]`; }));
+
 function f(item) {
     let prompt = '\nClick to continue';
     // First look for alternate prompt
