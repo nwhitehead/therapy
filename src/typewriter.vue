@@ -42,13 +42,11 @@ onMounted(async () => {
                 lie.value = parseInt(data[1], 16) / 16;
                 noise.value = parseInt(data[2], 16) / 16;
                 frequency.value = parseInt(data[3], 16) / 4;
-                console.log(lie.value, noise.value, frequency.value);
             } else {
                 console.log('Illegal lie value');
             }
         };
         await terminal?.writeMixedAsync(props.data, controller.signal, clickerCallback, lieCallback);
-        console.log('ready');
         emit('ready');
     });
 })

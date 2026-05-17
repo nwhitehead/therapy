@@ -1,12 +1,13 @@
 <script setup lang="ts">
 
-import { useTemplateRef, onMounted, watch } from 'vue';
+import { useTemplateRef, onMounted, onUnmounted, ref, watch } from 'vue';
 import VUMeter from './VUMeter01.png';
 import { perlin2 } from './perlin.js';
 
 const props = defineProps(['level', 'noise', 'frequency']);
 
 let canvas = useTemplateRef('canvas');
+const rAF = ref(null);
 
 async function newImg(src) {
     let img = new Image();
@@ -30,9 +31,10 @@ function clamp(x: number, lo: number, hi: number) {
 onMounted(async () => {
     const ctx = canvas.value?.getContext('2d');
     const img = await newImg(VUMeter);
-    const noiseAmp = props.noise ?? 0;
-    const noiseFreq = props.frequency ?? 1;
-    function update(v: number, t: number) {
+    function update(t: number) {
+        const noiseAmp = props.noise ?? 0;
+        const noiseFreq = props.frequency ?? 1;
+        console.log(`update t=${t} props=${props.level} ${props.noise}`);
         ctx?.clearRect(0, 0, canvas.value?.width ?? 0, canvas.value?.height ?? 0);
         ctx?.fillRect(0, 0, frameWidth, frameHeight);
         const x = props.level + perlin2(0.23, t * noiseFreq * 0.001) * noiseAmp;
@@ -40,12 +42,17 @@ onMounted(async () => {
         ctx?.drawImage(img, 0, frameHeight * frame, frameWidth, frameHeight, 0, 0, frameWidth * outputScale, frameHeight * outputScale);
     }
     function f(t) {
-        update(props.level, t);
-        requestAnimationFrame(f);
+        update(t);
+        rAF.value = requestAnimationFrame(f);
     }
-    requestAnimationFrame(f);
+    rAF.value = requestAnimationFrame(f);
 });
 
+onUnmounted(() => {
+    if (rAF.value) {
+        cancelAnimationFrame(rAF.value);
+    }
+});
 
 </script>
 
