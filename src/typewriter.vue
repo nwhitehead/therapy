@@ -14,7 +14,7 @@ let clickerRef = useTemplateRef('clickerSfx');
 const lie = ref(0.5);
 const noise = ref(0.8);
 const frequency = ref(2.0);
-const meter = ref(false);
+const meter = ref(true);
 
 onMounted(async () => {
     if (container.value === null) throw new Error("Typewriter container is null");
@@ -37,8 +37,12 @@ onMounted(async () => {
             console.log(`lie callback ${data}`);
             if (data === "0") {
                 meter.value = false;
-            } else if (data === "1") {
+            } else if (data.startsWith('1')) {
                 meter.value = true;
+                lie.value = parseInt(data[1], 16) / 16;
+                noise.value = parseInt(data[2], 16) / 16;
+                frequency.value = parseInt(data[3], 16) / 4;
+                console.log(lie.value, noise.value, frequency.value);
             } else {
                 console.log('Illegal lie value');
             }

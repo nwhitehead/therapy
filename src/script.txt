@@ -2,12 +2,12 @@
 [Click to start]
 
 --
-Did you hear that?{{L1}}
+{{L1000}}Did you hear that?
 
 Make sure your ***volume*** is on.
 
 --
-Have you ever wondered if things have *true names*?
+{{L1888}}Have you ever wondered if things have *true names*?
 
 --
 In folklore tales, knowing someone's name gives you power

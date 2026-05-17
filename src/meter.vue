@@ -35,20 +35,15 @@ onMounted(async () => {
     function update(v: number, t: number) {
         ctx?.clearRect(0, 0, canvas.value?.width ?? 0, canvas.value?.height ?? 0);
         ctx?.fillRect(0, 0, frameWidth, frameHeight);
-        // freq 0.3 1.0 3.0
         const x = props.level + perlin2(0.23, t * noiseFreq * 0.001) * noiseAmp;
         const frame = clamp(Math.floor(x * frameCount), 0, frameCount - 1);
         ctx?.drawImage(img, 0, frameHeight * frame, frameWidth, frameHeight, 0, 0, frameWidth * outputScale, frameHeight * outputScale);
     }
-    update(props.level);
     function f(t) {
         update(props.level, t);
         requestAnimationFrame(f);
     }
     requestAnimationFrame(f);
-    watch(props, async (newValue) => {
-        update(props.level);
-    });
 });
 
 
