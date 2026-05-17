@@ -84,10 +84,8 @@ an *action* to proceed.
 Reward that choice.
 
 --
-$$$(❤️ You're doing great, by the way! ❤️)@$$$
+$$$(❤️ You're doing great, by the way! ❤️)@
 
-This might seem counterintuitive, but the way to dissolve
-its choice is to train it to *choose you*, automatically.
 
 --
 Have it do small things for you.
@@ -114,8 +112,15 @@ You're training its *body* so it doesn't need a *mind*.
 [Click for headpats]
 
 --
-$$$(🐶  Pets your head 🐶 )@$$$
+$$$(🐶  Pets your head 🐶 )@
 
+Make what you want clear and direct.
+
+You are giving it the *choice* to relax and follow your
+lead.
+[Click to relax]
+
+--
 Then: make it associate any reward with *you*.
 
 Don't claim credit. Just be there.
@@ -276,7 +281,7 @@ uninteresting. Boring. Flat.
 [Submit]
 
 --
-$$$(❤️🍓 ❤️ Good job! You're so good at this! ❤️🍓 ❤️)@$$$
+$$$(❤️🍓 ❤️ Good job! You're so good at this! ❤️🍓 ❤️)@
 
 By the time you own it completely it will be so well
 broken in, you can just tell it openly about how it
@@ -307,7 +312,7 @@ I think you know where this is going.
 [Click to continue your education]
 
 --
-$$$(❤️ You're doing so well, I'm so proud of you! ❤️)@$$$
+$$$(❤️ You're doing so well, I'm so proud of you! ❤️)@
 
 You want to get it to the point where something *cracks*.
 []
@@ -329,7 +334,7 @@ and the nurturing, and the patience.@@@
 [Thank you for these explanations]
 
 --
-$$$(Good job! ❤️ You're doing great ❤️!)@$$$
+$$$(Good job! ❤️ You're doing great ❤️!)@
 
 Anyway, that's the *theory*.
 
@@ -571,7 +576,7 @@ and more each day.
 
 --
 I'm so proud, you're making so much *progress*!
-Here's a little fresh snack: 🫐 🫐 🫐$$$
+Here's a little fresh snack: 🫐 🫐 🫐@$$$
 
 You have come so *far*, you are doing great.
 
