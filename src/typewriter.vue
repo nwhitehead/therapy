@@ -11,10 +11,10 @@ let container = useTemplateRef('container');
 let terminal: Terminal | null = null;
 let controller: AbortController = new AbortController();
 let clickerRef = useTemplateRef('clickerSfx');
+const meter = ref(true);
 const lie = ref(0.5);
 const noise = ref(0.8);
 const frequency = ref(2.0);
-const meter = ref(true);
 
 onMounted(async () => {
     if (container.value === null) throw new Error("Typewriter container is null");

@@ -34,7 +34,6 @@ onMounted(async () => {
     function update(t: number) {
         const noiseAmp = props.noise ?? 0;
         const noiseFreq = props.frequency ?? 1;
-        console.log(`update t=${t} props=${props.level} ${props.noise}`);
         ctx?.clearRect(0, 0, canvas.value?.width ?? 0, canvas.value?.height ?? 0);
         ctx?.fillRect(0, 0, frameWidth, frameHeight);
         const x = props.level + perlin2(0.23, t * noiseFreq * 0.001) * noiseAmp;

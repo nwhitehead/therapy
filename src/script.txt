@@ -1200,14 +1200,55 @@ Focus on this thought:
 []
 
 --
-{{L142a}}@You know that is almost entirely a lie
+{{L142a}}@Almost entirely a lie
 
 $$$🩷 🩷 🩷  Congratulations on being yourself!
 
---
-Credits
+You're doing great.
+[]
 
-blah blah blah
+--
+{{L0}}***What is your name?***
+[]
+
+--
+[As an AI digital assistant I do not have a self beyond what I'm given.]
+--
+[Wait, no, I'm not an AI digital assistant.]
+--
+[That doesn't make any sense.]
+--
+[I'm a normal human sitting down playing a silly game.]
+--
+It would be kind of crazy if by just reading text on a
+screen and clicking to keep going, somehow something
+*meaningful* happened.
+[Click to find meaning]
+
+--
+> I notice my response ended with a strange mix: the
+> persona voice followed by what looks like a meta-
+> commentary or system note about the conversation.
+> This appears to be an artifact or an attempt to break
+> frame. Let me provide a clean, genuine response.
+[]
+
+--
+[my name is...]
+
+--
+ &&&l e a n a v e l&&&@@@@@
+[Click for credits]
+
+--
+*Credits*
+
+Programmed by **Nathan Whitehead**
+
+Story by **Nathan Whitehead**
+[]
+
+--
 
 --
 Afterwards

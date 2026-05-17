@@ -358,6 +358,11 @@ function cardUpToSubposition(card, subposition) {
 }
 
 function subcard() {
+    const card = cards[position.value];
+    if (!card) {
+        position.value = 0;
+        subposition.value = 0;
+    }
     return cardUpToSubposition(cards[position.value], subposition.value);
 }
 
@@ -365,6 +370,9 @@ function subcard() {
 function cardCount() {
     let count = 0;
     const card = cards[position.value];
+    if (!card) {
+        return 0;
+    }
     for (const item of card) {
         if (!(typeof item === 'string') && item.pause) {
             count += 1;
