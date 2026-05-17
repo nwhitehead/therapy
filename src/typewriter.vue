@@ -55,7 +55,9 @@ onMounted(async () => {
 
 <template>
     <div ref="container">
-        <Meter v-if="meter" :level="lie" :noise="noise" :frequency="frequency"></Meter>
+        <Transition name="slide">
+            <Meter v-if="meter" :level="lie" :noise="noise" :frequency="frequency"></Meter>
+        </Transition>
         <audio ref="clickerSfx" src="/clicker.opus"></audio>
     </div>
 </template>
@@ -105,4 +107,14 @@ onMounted(async () => {
 .mirror-mirror {
     animation: mirror 4s infinite normal;
 }
+.slide-enter-active,
+.slide-leave-active {
+    transition: all 0.5s ease-out;
+}
+.slide-enter-from,
+.slide-leave-to {
+    transform: translateY(-100px);
+    opacity: 0;
+}
+
 </style>
