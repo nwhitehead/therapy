@@ -15,7 +15,7 @@ watch(subposition, (newValue) => {
     localStorage.setItem('subposition', `${newValue}`);
 });
 watch(meter, (newValue) => {
-    localStorage.setItem('meter', `${newValue ? 1 : 0}`);
+    localStorage.setItem('meter', `${newValue}`);
 });
 watch(lie, (newValue) => {
     localStorage.setItem('lie', `${newValue}`);

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { useTemplateRef, onMounted, ref, watch } from 'vue';
+import { useTemplateRef, onMounted, watch } from 'vue';
 import { Terminal } from './terminal.ts';
 import Meter from './meter.vue';
 import { meter, lie, noise, frequency } from './useStore.ts';
@@ -30,15 +30,15 @@ onMounted(async () => {
             }
             console.log('Clicker clicked');
         };
-        const lieCallback = async (data) => {
+        const lieCallback = async (data: string) => {
             console.log(`lie callback ${data}`);
             if (data === "0") {
-                meter.value = false;
+                meter.value = 0;
             } else if (data.startsWith('1')) {
-                meter.value = true;
-                lie.value = parseInt(data[1], 16) / 16;
-                noise.value = parseInt(data[2], 16) / 16;
-                frequency.value = parseInt(data[3], 16) / 4;
+                meter.value = 1;
+                lie.value = parseInt(data[1] ?? '8', 16) / 16;
+                noise.value = parseInt(data[2] ?? '0', 16) / 16;
+                frequency.value = parseInt(data[3] ?? '0', 16) / 4;
             } else {
                 console.log('Illegal lie value');
             }

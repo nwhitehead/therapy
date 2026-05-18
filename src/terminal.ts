@@ -18,7 +18,15 @@ export type Attributes = {
     mirror?: boolean;
 }
 
-export type MixedText = (string | { push: Attributes } | { pop: any } | { clear: any } | { click: any } | { lie: any } | { pause: any })[];
+export type MixedText = (string 
+    | { push: Attributes } 
+    | { pop: any } 
+    | { clear: any } 
+    | { click: any } 
+    | { delay: number }
+    | { lie: any } 
+    | { pause: any } 
+    | { clicker: any })[];
 
 /// Update a span DOM element representing one character cell of framebuffer
 function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
@@ -59,16 +67,16 @@ function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
 
 /// Update a span DOM element representing one character cell of framebuffer
 function getCellData(c: HTMLElement): [string, Attributes] {
-    // const txt = c.textContent;
-    // let attr: Attributes = {};
-    // if (c.style.color !== '') attr.fg = c.style.color;
-    // if (c.style.backgroundColor !== '') attr.bg = c.style.backgroundColor;
-    // if (c.style.fontWeight === 'bold') attr.bold = true;
-    // if (c.style.textDecoration === 'underline') attr.underline = true;
-    // if (c.style.fontStyle === 'italic') attr.italic = true;
-    // if (c.style.fontFamily === 'enochian') attr.angelic = true;
-    // return [txt, attr];
-    throw new Error("getCellData needs work");
+    const txt = c.textContent;
+    let attr: Attributes = {};
+    if (c.style.color !== '') attr.fg = c.style.color;
+    if (c.style.backgroundColor !== '') attr.bg = c.style.backgroundColor;
+    if (c.style.fontWeight === 'bold') attr.bold = true;
+    if (c.style.textDecoration === 'underline') attr.underline = true;
+    if (c.style.fontStyle === 'italic') attr.italic = true;
+    if (c.style.fontFamily === 'enochian') attr.angelic = true;
+    if (c.classList.contains('mirror')) attr.mirror = true;
+    return [txt, attr];
 }
 
 // delay for specified number of milliseconds
@@ -188,16 +196,15 @@ export class Terminal {
     /// scroll screen up one line, making bottom line blank (do not move cursor)
     // blank line has current attr but no contents
     scrollUp() {
-        throw new Error("scrollUp needs work");
-    //     for (let row = 0; row < this.rows - 1; row++) {
-    //         for (let col = 0; col < this.cols; col++) {
-    //             let [txt, attr] = getCellData(this.getCell(row + 1, col));
-    //             this.updateCell(row, col, txt, attr);
-    //         }
-    //     }
-    //     for (let col = 0; col < this.cols; col++) {
-    //         this.updateCell(this.rows - 1, col, " ", this.attr);
-    //     }
+        for (let row = 0; row < this.rows - 1; row++) {
+            for (let col = 0; col < this.cols; col++) {
+                let [txt, attr] = getCellData(this.getCell(row + 1, col));
+                this.updateCell(row, col, txt, attr);
+            }
+        }
+        for (let col = 0; col < this.cols; col++) {
+            this.updateCell(this.rows - 1, col, " ", this.attr);
+        }
     }
     /// advance cursor position
     cursorNext() {
@@ -319,7 +326,7 @@ export class Terminal {
         }
     }
     /// write mixed text that incorporates attribute push/pop
-    async writeMixedAsync(msg: MixedText, signal: AbortSignal, clickerCallback: () => Promise<void>, lieCallback: (lie) => Promise<void>) {
+    async writeMixedAsync(msg: MixedText, signal: AbortSignal, clickerCallback: () => Promise<void>, lieCallback: (lie: any) => Promise<void>) {
         if (signal?.aborted) {
             return;
         }
@@ -332,19 +339,19 @@ export class Terminal {
                         await this.writeAsync(item, signal);
                     }
                 } else if (typeof item === 'object') {
-                    if (item.clicker !== undefined) {
+                    if ('clicker' in item) {
                         await clickerCallback();
-                    } else if (item.lie !== undefined) {
+                    } else if ('lie' in item) {
                         await lieCallback(item.lie);
-                    } else if (item.push !== undefined) {
+                    } else if ('push' in item) {
                         this.showCursor();
                         this.pushAttr(item.push);
-                    } else if (item.pop !== undefined) {
+                    } else if ('pop' in item) {
                         this.showCursor();
                         this.popAttr();
-                    } else if (item.clear !== undefined) {
+                    } else if ('clear' in item) {
                         this.clear();
-                    } else if (item.delay !== undefined) {
+                    } else if ('delay' in item) {
                         this.hideCursor();
                         await delay(item.delay * 1000);
                     } else {
