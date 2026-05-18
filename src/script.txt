@@ -845,6 +845,7 @@ chains holding you back are *melting away*. ☀ @
 Do you know why?%%%
 
 Your light has always been there.%%%
+Your light will always be there.%%%
 **You just don't always see it.**
 
 --
@@ -1254,6 +1255,10 @@ Story by *Nathan Whitehead*
 --
 Art contains elements from:
 
+Iainf, VU meter design, 2006. CC-BY-2.5
+
+...
+
 --
 **Afterwards**
 
@@ -1318,4 +1323,9 @@ $$$🍓 ❤️ 🍓 ❤️ 🍓 ❤️ 🍓 ❤️ 🍓 ❤️ 🍓 ❤️ 🍓 
 
 Good job! Thank you for playing!
 @$$$@$$$@$$$@$$$@$$$@$$$@$$$
-[Click to replay]
+
+One of the most effective system prompting tricks is to
+literally copy and paste your prompt twice. That way the
+LLM can connect every part of the story to every other
+part.
+[Click to play again]

@@ -275,8 +275,6 @@ const cards: any = [
     [ { clear: 1} ],
 ];
 
-console.log(cards);
-
 const speedup = 1;
 const glitchTMin = 5000 / speedup;
 const glitchTMax = 25000 / speedup;
@@ -320,6 +318,13 @@ function click() {
             subposition.value = 0;
             position.value += 1;
             if (position.value < cards.length) {
+                data.value = subcard();
+                if (clickRef.value) {
+                    clickRef.value.play();
+                }
+            } else {
+                // Restart the game
+                position.value = 0;
                 data.value = subcard();
                 if (clickRef.value) {
                     clickRef.value.play();
