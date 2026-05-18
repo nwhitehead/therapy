@@ -3,7 +3,7 @@ default:
 
 # Build the website
 build:
-  npm run build
+  rm -fr dist && npm run build && cd dist && zip -r ../therapy.zip .
 
 # Run dev website server
 dev:
