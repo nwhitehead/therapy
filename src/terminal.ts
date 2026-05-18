@@ -1,5 +1,5 @@
 
-type Options = {
+export type Options = {
     rows?: number;
     cols?: number;
     element?: HTMLElement;
@@ -8,7 +8,7 @@ type Options = {
     delay?: number;
 }
 
-type Attributes = {
+export type Attributes = {
     fg?: string;
     bg?: string;
     bold?: boolean;
@@ -18,7 +18,7 @@ type Attributes = {
     mirror?: boolean;
 }
 
-type MixedText = (string | { push: Attributes } | { pop: any } | { clear: any } | { click: any } | { lie: any })[];
+export type MixedText = (string | { push: Attributes } | { pop: any } | { clear: any } | { click: any } | { lie: any } | { pause: any })[];
 
 /// Update a span DOM element representing one character cell of framebuffer
 function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
@@ -34,22 +34,24 @@ function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
         if (attr.angelic) {
             c.style.fontFamily = 'enochian';
             c.classList.add('angelic');
-            c.style.animationDelay = `-${Math.random(100)}s`;
-            c.style.animationDuration = `${3.6 + Math.random(4)}s`;
+            c.style.animationDelay = `-${Math.random()}s`;
+            c.style.animationDuration = `${3.6 + Math.random()}s`;
         }
         if (!/\d/g.test(txt)) {
+            // TS doesn't know about fontVariantEmoji
+            // @ts-ignore
             c.style.fontVariantEmoji = 'emoji';
         }
         if (attr.mirror) {
             c.classList.add('mirror');
-            const dupElem = c.cloneNode(true);
+            const dupElem = c.cloneNode(true) as HTMLElement;
             dupElem.classList.remove('mirror');
             dupElem.classList.add('mirror-mirror');
             dupElem.style.position = "relative";
             dupElem.style.left = "-0.605em";
             dupElem.style.top = "1.0em";
             dupElem.style.transform = "scaleY(-1)";
-            dupElem.style.opacity = 0.5;
+            dupElem.style.opacity = "0.5";
             c.appendChild(dupElem);
         }
     }

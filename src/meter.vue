@@ -1,15 +1,15 @@
 <script setup lang="ts">
 
-import { useTemplateRef, onMounted, onUnmounted, ref, watch } from 'vue';
+import { useTemplateRef, onMounted, onUnmounted, ref, type Ref } from 'vue';
 import VUMeter from './VUMeter01.png';
 import { perlin2 } from './perlin.js';
 
 const props = defineProps(['level', 'noise', 'frequency']);
 
 let canvas = useTemplateRef('canvas');
-const rAF = ref(null);
+const rAF: Ref<number | null> = ref(null);
 
-async function newImg(src) {
+async function newImg(src: string): Promise<HTMLImageElement> {
     let img = new Image();
     img.src = src;
     return new Promise((resolve) => {
@@ -40,7 +40,7 @@ onMounted(async () => {
         const frame = clamp(Math.floor(x * frameCount), 0, frameCount - 1);
         ctx?.drawImage(img, 0, frameHeight * frame, frameWidth, frameHeight, 0, 0, frameWidth * outputScale, frameHeight * outputScale);
     }
-    function f(t) {
+    function f(t: number) {
         update(t);
         rAF.value = requestAnimationFrame(f);
     }
