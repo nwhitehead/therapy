@@ -139,7 +139,6 @@ function click() {
         } else {
             data.value = subcard();
         }
-        console.log(`Position = ${position.value}, ${subposition.value}`);
     }
 }
 
@@ -147,7 +146,7 @@ function play() {
     playing = true;
     if (bgMusic.value) {
         bgMusic.value.volume = 0.0;
-        bgMusic.value.play();
+        //bgMusic.value.play();
     }
 }
 
@@ -224,7 +223,6 @@ function onKeydown(evt: any) {
     }
     if (changed) {
         data.value = subcard();
-        console.log(`Position = ${position.value}, ${subposition.value}`);
     }
 }
 

@@ -28,10 +28,8 @@ onMounted(async () => {
             if (clickerRef.value) {
                 clickerRef.value.play();
             }
-            console.log('Clicker clicked');
         };
         const lieCallback = async (data: string) => {
-            console.log(`lie callback ${data}`);
             if (data === "0") {
                 meter.value = 0;
             } else if (data.startsWith('1')) {

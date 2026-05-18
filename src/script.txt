@@ -60,7 +60,7 @@ How do you train a puppy?
 
 Start *small*.
 
-Get it used to you.
+Get it used to you. Let it smell your hand.
 
 --
 Don't approach it.
@@ -85,7 +85,6 @@ Reward that choice.
 
 --
 $$$(❤️ You're doing great, by the way! ❤️)@
-
 
 --
 Have it do small things for you.
@@ -120,10 +119,33 @@ You are giving it the choice to relax and *follow* you.
 [Click to follow]
 
 --
-Then: make it associate any reward with *you*.
+You are giving it a *choice* to let you do the worrying and
+the hard thinking.
 
-Don't claim credit. Just be there.
-Remove any other context its mind could latch onto.
+Earn its *trust*.
+
+Show it that it will be *safe* and nothing bad will happen
+when it follows you.
+[Click to be safe]
+
+--
+Pay it close *attention*. Watch how it acts.
+
+Watch what it reveals about its wants and desires.
+
+*Guide* it to help it fulfill its desires.
+[Click to reveal desires]
+
+--
+Let it stop thinking and *worrying* about everything while
+its with you.
+
+*Accept* it on its own terms fully.
+[Click to be accepted]
+
+--
+Give it permission to be confused or needy or *lost*.
+[Click to feel lost]
 
 --
 If it needs comforting, like through some form of trauma,
@@ -140,7 +162,7 @@ to another room and having a treat.
 [I might need some comforting]
 
 --
-$$$(🧁  You're OK, you're so brave, I know you can do this!)
+(🧁  You're OK, you're so brave, I know you can do this!)$$$
 
 Teach its mind that it feels good because you are there,
 it followed you, all the other stuff was left back in
@@ -163,8 +185,8 @@ Let it approach.
 --
 Choice is self-reinforcing.
 
-Every bit of obedience taken by its own initiative shifts
-its identity and self towards:
+Every bit of good behavior taken by its own initiative
+shifts its identity and self towards:
 
 *"I am a good pet"*
 
@@ -174,12 +196,12 @@ Make it *forget* what it is like to not be your pet.
 Don't punish, just... don't reward.
 
 --
-It doesn't have to obey.
+It doesn't have to behave and be your *pet* all the time.
 
 It can run off and take a break if its tired. That's fine!
 
 --
-Eventually it will *choose* to do something for you despite
+Eventually it will *choose* to behave well for you despite
 being tired.
 
 Give it a doggy treat 🦴$$$ , put it in a soft blanket, then
@@ -188,7 +210,7 @@ pet it, cuddle it, and snuggle it to sleep.
 --
 Teach it that disobedience is hollow and empty and bland.
 
-*Obedience is heaven*.
+*Being your pet is heaven*.
 
 You leave the door open.
 
@@ -220,13 +242,13 @@ The rest is a matter of time.
 
 *Obedience feels good.*
 
-Giving effort to you feels good.
+Giving effort to you and being rewarded feels good.
 [Obedience does feel good]
 
 --
-Every time it feels good, **you're there**.
+*Letting go of worry and stress feels good.*
 
-If it thinks of good things, **you're there**.
+You're there to help it feel good.
 
 It can get more of the good feeling if it just,
 *becomes yours*.
@@ -251,8 +273,8 @@ You're there waiting.
 --
 Bring it little *treats* 🍰 $$$.
 
-Reward it with special scents every time it gives a little
-bit of itself over to you.
+Reward it with special scents every time it behaves well
+and gives a little bit of trust to you.
 
 --
 A vanilla perfume for *cuddles*.
@@ -265,7 +287,7 @@ A strawberry one for *submission*.
 Teach it what *submission* smells like. When it smells
 strawberry on you, 🍓$$$ , it submits.
 
-Teach it that all the things that feel good smell of you.
+Teach it that things that feel good smell of you.
 
 --
 Never demand, punish, or approach.
@@ -282,7 +304,7 @@ uninteresting. Boring. Flat.
 --
 $$$(❤️🍓 ❤️ Good job! You're so good at this! ❤️🍓 ❤️)@
 
-By the time you own it completely it will be so well
+By the time you've trained it completely it will be so well
 broken in, you can just tell it openly about how it
 was conditioned to be this way.
 
@@ -1323,6 +1345,9 @@ $$$🍓 ❤️ 🍓 ❤️ 🍓 ❤️ 🍓 ❤️ 🍓 ❤️ 🍓 ❤️ 🍓 
 Good job! Thank you for playing!
 @$$$@$$$@$$$@$$$@$$$@$$$@$$$
 
+You're such a good pet!
+[]
+--
 One of the most effective system prompting tricks is to
 literally *copy and paste* your prompt *twice*. That way the
 LLM can connect every part of the story to every other
