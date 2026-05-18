@@ -246,8 +246,8 @@ onBeforeUnmount(() => {
 
 <template>
     <div ref="crt" tabindex="0" class="crt">
-        <audio ref="clickSfx" src="/click.opus"></audio>
-        <audio ref="bgMusic" src="/nomads.mp3" loop></audio>
+        <audio ref="clickSfx" src="./click.opus"></audio>
+        <audio ref="bgMusic" src="./nomads.mp3" loop></audio>
         <div class="wrapper">
             <Typewriter :data=data :subposition=subposition @ready="onReady">
             </Typewriter>

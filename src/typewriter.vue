@@ -55,7 +55,7 @@ onMounted(async () => {
         <Transition name="slide">
             <Meter v-if="meter" :level="lie" :noise="noise" :frequency="frequency"></Meter>
         </Transition>
-        <audio ref="clickerSfx" src="/clicker.opus"></audio>
+        <audio ref="clickerSfx" src="./clicker.opus"></audio>
     </div>
 </template>
 
