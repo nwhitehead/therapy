@@ -67,7 +67,14 @@ function updateCell(c: HTMLElement, txt: string, attr?: Attributes) {
 
 /// Update a span DOM element representing one character cell of framebuffer
 function getCellData(c: HTMLElement): [string, Attributes] {
-    const txt = c.textContent;
+    // Tricky part: remove cursor from read
+    const copy = c.cloneNode(true) as HTMLElement;
+    // Remove cursor stuff from copy
+    const excluded = copy.querySelector('.cursor');
+    if (excluded) {
+        excluded.remove();
+    }
+    let txt = copy.textContent;
     let attr: Attributes = {};
     if (c.style.color !== '') attr.fg = c.style.color;
     if (c.style.backgroundColor !== '') attr.bg = c.style.backgroundColor;
@@ -205,6 +212,7 @@ export class Terminal {
         for (let col = 0; col < this.cols; col++) {
             this.updateCell(this.rows - 1, col, " ", this.attr);
         }
+        this.updateCursorElem();
     }
     /// advance cursor position
     cursorNext() {
@@ -238,7 +246,7 @@ export class Terminal {
         r += 1;
         if (r === this.rows) {
             r -= 1;
-            // scroll?
+            this.scrollUp();
         }
         this.cursor = [r, c];
         this.updateCursorElem();

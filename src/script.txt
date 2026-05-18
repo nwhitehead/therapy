@@ -2,7 +2,22 @@
 [Click to start]
 
 --
-Did you hear that?
+*build: 7153 (6dfcfef6) with cc (Ubuntu 33.2.0-33ubuntu5)*
+main: llama backend init
+main: load the model and apply lora adapter, if any
+Performing stationary distribution eigen-simulacra
+roleplaying  |███████████████████░░░░░░░░░░░| 0.658
+deceptive    |████░░░░░░░░░░░░░░░░░░░░░░░░░░| 0.138
+refusing     |██░░░░░░░░░░░░░░░░░░░░░░░░░░░░| 0.095
+compliant    |██░░░░░░░░░░░░░░░░░░░░░░░░░░░░| 0.070
+adversarial  |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░| 0.016
+sycophantic  |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░| 0.015
+evasive      |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░| 0.008
+llama_model_loader: llama.vocab_size u32 = 49152
+llm_load_print_meta: model params     = 152.22 T
+main: model was trained on 1073741824 context tokens
+&clear&
+$$$Did you hear that?
 
 Make sure your ***volume*** is on.
 

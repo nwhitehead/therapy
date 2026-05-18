@@ -89,6 +89,7 @@ function f(item: string) {
     items = splitDelim(items, "&-&", { mirror: true });
     items = splitDelimSingle(items, "@", { delay:1 });
     items = splitDelimSingle(items, "%%%", { pause:1 });
+    items = splitDelimSingle(items, '&clear&', { clear:1 });
     items = splitDelimSingle(items, "$$$", { clicker:1 });
     items = splitBraceDelim(items, "L", (txt) => {
         return { lie: txt };
